@@ -2,16 +2,16 @@ package com.idplus.fresqueclimat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.tabs.TabLayout
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var tabLayout: TabLayout
+    lateinit var viewPager: ViewPager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,20 +20,20 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // get a reference to the navigation controller from the navigation host
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        tabLayout = findViewById(R.id.tab_layout)
+        viewPager = findViewById(R.id.view_pager)
 
-        // This builds a configuration linking the toolbar to the navigation graph
-        val appBarBuilder = AppBarConfiguration.Builder(navController.graph)
+        val adapter = FreskFragmentAdapter(this, supportFragmentManager)
+        viewPager!!.adapter = adapter
 
-        // apply the configuration to the toolbar
-        // it will include on the appbar an "up" button & display which screen you've navigated to
-        toolbar.setupWithNavController(navController, appBarBuilder.build())
-    }
+        tabLayout!!.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                viewPager!!.currentItem = tab!!.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
+            override fun onTabReselected(tab: TabLayout.Tab?) { }
+        })
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+        tabLayout!!.setupWithViewPager(viewPager)
     }
 }

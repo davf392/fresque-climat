@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.databinding.DataBindingUtil.inflate
 import androidx.recyclerview.widget.RecyclerView
 import com.idplus.fresqueclimat.data.Session
-import com.idplus.fresqueclimat.databinding.FragmentSessionBinding.inflate
 
 
 class SessionItemAdapter : RecyclerView.Adapter<SessionItemAdapter.SessionItemViewHolder>() {
