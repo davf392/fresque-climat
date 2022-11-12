@@ -6,22 +6,23 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Session::class], version = 1, exportSchema = false)
-abstract class SessionDatabase : RoomDatabase() {
+@Database(entities = [Session::class, Resource::class], version = 1, exportSchema = false)
+abstract class FreskDatabase : RoomDatabase() {
     abstract val sessionDao: SessionDao
+    abstract val resourceDao: ResourceDao
 
     companion object {
         @Volatile
-        private var INSTANCE:SessionDatabase? = null
+        private var INSTANCE:FreskDatabase? = null
 
-        fun getInstance(context: Context): SessionDatabase {
+        fun getInstance(context: Context): FreskDatabase {
             synchronized(this) {
                 var instance = INSTANCE
                 if(instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        SessionDatabase::class.java,
-                        "session_database"
+                        FreskDatabase::class.java,
+                        "fresk_database"
                     ).build()
                 }
 

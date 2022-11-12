@@ -1,10 +1,11 @@
-package com.idplus.fresqueclimat
+package com.idplus.fresqueclimat.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.idplus.fresqueclimat.R
 import com.idplus.fresqueclimat.data.Session
 
 

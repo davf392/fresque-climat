@@ -12,19 +12,39 @@
         android:id="@+id/toolbar"
         style="@style/Widget.MaterialComponents.Toolbar.Primary"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@color/fresk_icon_light"
+        app:tabTextColor="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACTUALITES" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_sessions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SESSIONS" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_resources"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESSOURCES" />
 
     </com.google.android.material.tabs.TabLayout>
 

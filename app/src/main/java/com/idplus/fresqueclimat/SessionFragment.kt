@@ -7,8 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.idplus.fresqueclimat.data.SessionDatabase
+import com.idplus.fresqueclimat.adapter.SessionItemAdapter
+import com.idplus.fresqueclimat.data.FreskDatabase
 import com.idplus.fresqueclimat.databinding.FragmentSessionBinding
+import com.idplus.fresqueclimat.factory.SessionViewModelFactory
+import com.idplus.fresqueclimat.viewmodel.SessionViewModel
 
 
 /**
@@ -29,7 +32,7 @@ class SessionFragment : Fragment() {
         val application = requireNotNull(this.activity).application
 
         // get an instance of the database and the object to the DAO we will use to manage sessions
-        val dao = SessionDatabase.getInstance(application).sessionDao
+        val dao = FreskDatabase.getInstance(application).sessionDao
 
         // builds the view model for the sessions with the factory
         val viewModel = ViewModelProvider(this, SessionViewModelFactory(dao)).get(SessionViewModel::class.java)
@@ -37,6 +40,7 @@ class SessionFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        // insert fake sessions into the database
         viewModel.seedFakeData()
 
         // add the adapter to the sessionsList recycler view

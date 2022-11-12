@@ -1,8 +1,9 @@
-package com.idplus.fresqueclimat
+package com.idplus.fresqueclimat.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.idplus.fresqueclimat.data.SessionDao
+import com.idplus.fresqueclimat.viewmodel.SessionViewModel
 
 class SessionViewModelFactory(private val dao: SessionDao) : ViewModelProvider.Factory {
 
