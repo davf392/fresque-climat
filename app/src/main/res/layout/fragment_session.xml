@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.idplus.fresqueclimat.SessionViewModel" />
+            type="com.idplus.fresqueclimat.viewmodel.SessionViewModel" />
     </data>
 
     <LinearLayout
