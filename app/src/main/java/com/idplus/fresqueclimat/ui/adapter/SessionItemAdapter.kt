@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.adapter
+package com.idplus.fresqueclimat.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.idplus.fresqueclimat.R
-import com.idplus.fresqueclimat.data.Session
+import com.idplus.fresqueclimat.data.local.entities.Session
 
 
 class SessionItemAdapter : RecyclerView.Adapter<SessionItemAdapter.SessionItemViewHolder>() {
@@ -28,7 +28,7 @@ class SessionItemAdapter : RecyclerView.Adapter<SessionItemAdapter.SessionItemVi
         holder.bind(item)
     }
 
-    class SessionItemViewHolder(val cardView: CardView): RecyclerView.ViewHolder(cardView) {
+    class SessionItemViewHolder(cardView: CardView): RecyclerView.ViewHolder(cardView) {
 
         val sessionDate = cardView.findViewById<TextView>(R.id.date_time)
         val sessionLocation = cardView.findViewById<TextView>(R.id.location)

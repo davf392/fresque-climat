@@ -6,7 +6,7 @@
 <!--    <data>-->
 <!--        <variable-->
 <!--            name="viewModel"-->
-<!--            type="com.idplus.fresqueclimat.NewsViewModel" />-->
+<!--            type="com.idplus.fresqueclimat.ui.viewmodel.NewsViewModel" />-->
 <!--    </data>-->
 
 <FrameLayout
@@ -14,7 +14,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.idplus.fresqueclimat.NewsFragment">
+    tools:context="com.idplus.fresqueclimat.ui.fragments.NewsFragment">
 
     <TextView
         android:layout_width="wrap_content"

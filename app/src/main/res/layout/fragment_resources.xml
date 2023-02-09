@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ResourcesFragment">
+    tools:context=".ui.fragments.ResourcesFragment">
     <data>
         <variable
             name="viewModel"
-            type="com.idplus.fresqueclimat.viewmodel.ResourceViewModel" />
+            type="com.idplus.fresqueclimat.ui.viewmodel.ResourceViewModel" />
     </data>
 
     <LinearLayout

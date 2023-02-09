@@ -1,18 +1,14 @@
-package com.idplus.fresqueclimat.adapter
+package com.idplus.fresqueclimat.ui.adapter
 
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.idplus.fresqueclimat.R
-import com.idplus.fresqueclimat.data.Resource
+import com.idplus.fresqueclimat.data.local.entities.Resource
 
 
 

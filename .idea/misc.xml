@@ -10,12 +10,18 @@
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2555" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/drawable/ic_baseline_pageview_24.xml" value="0.2555" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/activity_anim_account.xml" value="0.1" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_anim_account.xml" value="0.1981981981981982" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_home.xml" value="0.19" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_news.xml" value="0.2625" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_resources.xml" value="0.2625" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/fragment_session.xml" value="0.25" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/resource_item.xml" value="0.5" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/layout/session_item.xml" value="0.67" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11145833333333334" />
+        <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/menu/main_menu.xml" value="0.33" />
         <entry key="..\:/DEV/ANDROID/kotlin/FresqueClimat/app/src/main/res/menu/menu.xml" value="0.275" />
       </map>
     </option>

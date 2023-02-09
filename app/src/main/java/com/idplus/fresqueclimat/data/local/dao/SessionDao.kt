@@ -1,7 +1,8 @@
-package com.idplus.fresqueclimat.data
+package com.idplus.fresqueclimat.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.idplus.fresqueclimat.data.local.entities.Session
 
 @Dao
 interface SessionDao {
