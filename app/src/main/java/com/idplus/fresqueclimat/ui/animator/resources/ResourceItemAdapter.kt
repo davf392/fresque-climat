@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.adapter
+package com.idplus.fresqueclimat.ui.animator.resources
 
 import android.content.Intent
 import android.net.Uri
@@ -30,10 +30,10 @@ class ResourceItemAdapter : RecyclerView.Adapter<ResourceItemAdapter.ResourceIte
         holder.bind(data[position])
     }
 
-    class ResourceItemViewHolder(val cardView: CardView): RecyclerView.ViewHolder(cardView) {
+    class ResourceItemViewHolder(private val cardView: CardView): RecyclerView.ViewHolder(cardView) {
 
-        var resourceTitle = cardView.findViewById<TextView>(R.id.resource_title)
-        var resourceDescription = cardView.findViewById<TextView>(R.id.resource_description)
+        var resourceTitle: TextView = cardView.findViewById(R.id.resource_title)
+        var resourceDescription: TextView = cardView.findViewById(R.id.resource_description)
 
         companion object {
             fun inflateFrom(parent: ViewGroup): ResourceItemViewHolder {
@@ -49,9 +49,12 @@ class ResourceItemAdapter : RecyclerView.Adapter<ResourceItemAdapter.ResourceIte
 
             // start resource URL in new activity in a browser
             cardView.setOnClickListener {
-                val openURL = Intent(Intent.ACTION_VIEW)
-                openURL.data = Uri.parse(item.externalLink)
-                cardView.context.startActivity(openURL)
+                val link = item.externalLink
+                if (link != null && link.isNotBlank()) {
+                    val openURL = Intent(Intent.ACTION_VIEW)
+                    openURL.data = Uri.parse(link)
+                    cardView.context.startActivity(openURL)
+                }
             }
         }
     }

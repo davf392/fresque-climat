@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.sessions.SessionFragment">
+    <data>
+        <variable
+            name="session"
+            type="com.idplus.fresqueclimat.ui.sessions.SessionItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/fresk_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="16dp"
+            android:text="Atelier la Fresque du Climat"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_book_slot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_anim_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fresk_name_title" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_share_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:src="@drawable/ic_baseline_share_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fresk_name_title" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="12dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fab_book_slot" />
+
+        <LinearLayout
+            android:id="@+id/ll_date_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <ImageView
+                android:id="@+id/icon_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:srcCompat="@drawable/ic_baseline_access_time_filled_24" />
+
+            <TextView
+                android:id="@+id/tv_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{session.date.toString()}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_date_time">
+
+            <ImageView
+                android:id="@+id/icon_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{session.locationString}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_location">
+
+            <ImageView
+                android:id="@+id/icon_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:srcCompat="@drawable/ic_baseline_language_24" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{session.language}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_price_ticket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_language">
+
+            <ImageView
+                android:id="@+id/icon_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="5dp"
+                app:srcCompat="@drawable/ic_baseline_ticket_24" />
+
+            <TextView
+                android:id="@+id/tv_price_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/text_session_price(session.price)}" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_participants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/ll_price_ticket">
+
+            <ImageView
+                android:id="@+id/icon_participants"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_groups_24" />
+
+            <TextView
+                android:id="@+id/tv_participants_slots_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{@string/text_list_session_nb_slots_participants(session.availableSlotsPublic)}"
+                android:textColor="#007E7C"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/icon_participants"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_participants"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:max="@{session.capacitySlotsPublic}"
+                android:progress="@{session.totalParticipantsPublic}"
+                android:progressDrawable="@drawable/progress_bar"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_participants"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_participants_slots_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_participants_slots_left" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_facilitators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/cl_participants">
+
+            <ImageView
+                android:id="@+id/icon_facilitators"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_emoji_people_24" />
+
+            <TextView
+                android:id="@+id/tv_facilitators_slots_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{@string/text_list_session_nb_slots_facilitators(session.availableSlotsPublic)}"
+                android:textColor="#007E7C"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/icon_facilitators"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ProgressBar
+                android:id="@+id/progress_bar_facilitators"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:max="@{session.capacitySlotsFacilitators}"
+                android:progress="@{session.totalFacilitators}"
+                android:progressDrawable="@drawable/progress_bar"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_facilitators"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_facilitators_slots_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_facilitators_slots_left" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_description_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="16dp"
+            android:text="Description"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl_facilitators" />
+
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@{session.description}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

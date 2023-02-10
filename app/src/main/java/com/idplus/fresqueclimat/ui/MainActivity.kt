@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.activities
+package com.idplus.fresqueclimat.ui
 
 import android.os.Bundle
 import android.view.Menu

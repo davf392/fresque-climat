@@ -1,17 +1,12 @@
-package com.idplus.fresqueclimat.ui.fragments
+package com.idplus.fresqueclimat.ui.animator.resources
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import com.idplus.fresqueclimat.ui.adapter.ResourceItemAdapter
 import com.idplus.fresqueclimat.databinding.FragmentResourcesBinding
-import com.idplus.fresqueclimat.ui.viewmodel.ResourceViewModel
-import com.idplus.fresqueclimat.ui.viewmodel.SessionViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +32,7 @@ class ResourcesFragment : Fragment() {
 
         binding.resourcesList.adapter = adapter
         binding.resourcesList.setOnClickListener {
-            var itemPosition = binding.resourcesList.indexOfChild(it)
+//            var itemPosition = binding.resourcesList.indexOfChild(it)
         }
 
         resourcesViewModel.resources.observe(viewLifecycleOwner) {

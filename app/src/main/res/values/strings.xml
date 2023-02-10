@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fresque Climat</string>
+    <string name="text_list_session_nb_slots_participants">%d places·s restante·s</string>
+    <string name="text_list_session_nb_slots_facilitators">%d anima·teur·trice·s restant·e·s</string>
+    <string name="home_description_fresk">Vous voulez agir pour le climat mais n’avez pas le temps de devenir climatologue ?\n\nEn 3 heures, l’atelier collaboratif « la Fresque du Climat » permet de comprendre l’essentiel des enjeux climatiques pour passer à l’action.</string>
+    <string name="text_session_price">Tarif libre (€ %.2f)</string>
 </resources>

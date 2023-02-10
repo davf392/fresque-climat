@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.fragments
+package com.idplus.fresqueclimat.ui.login
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.idplus.fresqueclimat.R
 import com.idplus.fresqueclimat.databinding.FragmentLoginBinding
-import com.idplus.fresqueclimat.ui.viewmodel.LoginViewModel
 
 
 class LoginFragment : Fragment() {

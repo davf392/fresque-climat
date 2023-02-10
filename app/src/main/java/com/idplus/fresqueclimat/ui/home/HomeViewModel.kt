@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.viewmodel
+package com.idplus.fresqueclimat.ui.home
 
 import androidx.lifecycle.ViewModel
 

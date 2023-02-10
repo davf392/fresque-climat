@@ -1,8 +1,8 @@
-package com.idplus.fresqueclimat.ui.viewmodel
+package com.idplus.fresqueclimat.ui.animator.resources
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.idplus.fresqueclimat.data.remote.repositories.ResourcesRepository
+import com.idplus.fresqueclimat.data.remote.repositories.ResourcesRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResourceViewModel @Inject constructor(
-    private val repository: ResourcesRepository
+    private val repository: ResourcesRepositoryImpl
 )
     : ViewModel() {
 

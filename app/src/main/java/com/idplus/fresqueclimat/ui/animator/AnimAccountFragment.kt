@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.fragments
+package com.idplus.fresqueclimat.ui.animator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.idplus.fresqueclimat.R
 import com.idplus.fresqueclimat.databinding.FragmentAnimAccountBinding
-import com.idplus.fresqueclimat.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +28,7 @@ class AnimAccountFragment : Fragment() {
 
         // Listen bottom navigation tabs change
         binding.bottomNavView.setOnItemSelectedListener {
+            navController.popBackStack()
             when (it.itemId) {
                 R.id.miNews -> navController.navigate(R.id.newsFragment)
                 R.id.miSessions -> navController.navigate(R.id.sessionFragment)
