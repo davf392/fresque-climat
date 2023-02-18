@@ -1,22 +1,26 @@
-package com.idplus.fresqueclimat.ui.home
+package com.idplus.fresqueclimat.ui.profile
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.idplus.fresqueclimat.R
-import com.idplus.fresqueclimat.databinding.FragmentHomeBinding
+import com.idplus.fresqueclimat.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModels<HomeViewModel>()
+@AndroidEntryPoint
+class ProfileFragment : Fragment() {
+
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var navController: NavController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val fragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentProfileBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -24,12 +28,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.fragment = this@HomeFragment
-        binding.lifecycleOwner = viewLifecycleOwner
         navController = findNavController()
+
+        binding.fragment = this@ProfileFragment
+
     }
 
-    fun goToSelectParticipantChoiceScreen() {
-        navController.navigate(R.id.action_homeFragment_to_selectParticipationFragment)
+    fun setupRecyclerView() {
+
+    }
+
+    fun goToProfileInfo() {
+//        navController.navigate()
     }
 }

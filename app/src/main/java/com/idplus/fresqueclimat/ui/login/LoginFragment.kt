@@ -33,16 +33,6 @@ class LoginFragment : Fragment() {
     }
 
     fun confirmCredentials() {
-        navController.navigate(R.id.action_loginFragment_to_animAccountFragment)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-        menu.findItem(R.id.menu_anim_space).isVisible = false
+        navController.navigate(R.id.action_loginFragment_to_profileFragment)
     }
 }

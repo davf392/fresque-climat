@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.participate.SelectParticipationFragment">
+    tools:context=".ui.explore.participate.SelectParticipationFragment">
     <data>
         <variable
             name="fragment"
-            type="com.idplus.fresqueclimat.ui.participate.SelectParticipationFragment" />
+            type="com.idplus.fresqueclimat.ui.explore.participate.SelectParticipationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="64dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_participant_public"

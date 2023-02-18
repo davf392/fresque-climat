@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/explore"
+    app:startDestination="@id/exploreSessionsFragment">
+
+    <fragment
+        android:id="@+id/selectParticipationFragment"
+        android:name="com.idplus.fresqueclimat.ui.explore.participate.SelectParticipationFragment"
+        android:label="Je participe en tant que..."
+        tools:layout="@layout/fragment_select_participation" >
+        <action
+            android:id="@+id/action_selectParticipationFragment_to_exploreSessionsFragment"
+            app:destination="@id/exploreSessionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/exploreSessionsFragment"
+        android:name="com.idplus.fresqueclimat.ui.explore.ExploreSessionsFragment"
+        android:label="Trouver un atelier"
+        tools:layout="@layout/fragment_explore_sessions" >
+        <action
+            android:id="@+id/action_exploreSessionsFragment_to_sessionDetailsFragment"
+            app:destination="@id/sessionDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sessionDetailsFragment"
+        android:name="com.idplus.fresqueclimat.ui.explore.session_details.SessionDetailsFragment"
+        android:label="Détails Atelier"
+        tools:layout="@layout/fragment_session_details">
+        <argument
+            android:name="session"
+            app:argType="com.idplus.fresqueclimat.ui.explore.SessionItem" />
+    </fragment>
+
+</navigation>

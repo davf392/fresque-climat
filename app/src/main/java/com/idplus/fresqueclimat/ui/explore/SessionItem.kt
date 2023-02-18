@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.sessions
+package com.idplus.fresqueclimat.ui.explore
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

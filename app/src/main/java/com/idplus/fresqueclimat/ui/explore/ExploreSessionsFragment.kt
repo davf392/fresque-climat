@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.sessions
+package com.idplus.fresqueclimat.ui.explore
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.idplus.fresqueclimat.databinding.FragmentSessionBinding
+import com.idplus.fresqueclimat.databinding.FragmentExploreSessionsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SessionFragment : Fragment() {
+class ExploreSessionsFragment : Fragment() {
 
-    private lateinit var binding: FragmentSessionBinding
+    private lateinit var binding: FragmentExploreSessionsBinding
     private lateinit var navController: NavController
-    private val sessionViewModel by viewModels<SessionViewModel>()
     private lateinit var sessionListAdapter: SessionItemAdapter
+    private val exploreSessionsViewModel by viewModels<ExploreSessionsViewModel>()
 
     override fun onCreateView(inf: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val fragmentBinding = FragmentSessionBinding.inflate(inf, container, false)
+        val fragmentBinding = FragmentExploreSessionsBinding.inflate(inf, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -28,7 +28,7 @@ class SessionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = sessionViewModel
+        binding.viewModel = exploreSessionsViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         navController = findNavController()
@@ -38,29 +38,30 @@ class SessionFragment : Fragment() {
 
     private fun setupRecyclerView() {
         sessionListAdapter = SessionItemAdapter(SessionItemAdapter.SessionListener { session ->
-            sessionViewModel.onSessionClicked(session)
+            exploreSessionsViewModel.onSessionClicked(session)
         })
         binding.rvSessionsList.adapter = sessionListAdapter
     }
 
     private fun setupObservers() {
         // observe & submit the list of asteroids to the adapter whenever it changes
-        sessionViewModel.sessions.observe(viewLifecycleOwner) { sessions ->
+        exploreSessionsViewModel.sessions.observe(viewLifecycleOwner) { sessions ->
             if (sessions != null) {
                 sessionListAdapter.submitList(sessions)
             }
         }
 
-        sessionViewModel.navigateToSessionDetails.observe(viewLifecycleOwner) { session ->
+        exploreSessionsViewModel.navigateToSessionDetails.observe(viewLifecycleOwner) { session ->
             if(session != null) {
                 navigateToSessionDetails(session)
+                exploreSessionsViewModel.doneNavigating()
             }
         }
     }
 
     private fun navigateToSessionDetails(session: SessionItem) {
         navController.navigate(
-            SessionFragmentDirections.actionSessionFragmentToSessionDetailsFragment(
+            ExploreSessionsFragmentDirections.actionExploreSessionsFragmentToSessionDetailsFragment(
                 session
             )
         )

@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import com.idplus.fresqueclimat.data.local.asDomainModel
 import com.idplus.fresqueclimat.data.local.dao.SessionDao
 import com.idplus.fresqueclimat.data.local.entities.Session
-import com.idplus.fresqueclimat.ui.sessions.SessionItem
+import com.idplus.fresqueclimat.ui.explore.SessionItem
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

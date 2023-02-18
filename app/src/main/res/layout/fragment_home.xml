@@ -5,12 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.HomeFragment">
 
-    <data>
-        <variable
-            name="fragment"
-            type="com.idplus.fresqueclimat.ui.home.HomeFragment" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
@@ -45,7 +39,6 @@
             android:layout_height="55dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> fragment.goToSelectParticipantChoiceScreen()}"
             android:text="Participer à un atelier"
             app:layout_constraintBottom_toTopOf="@+id/btn_become_animator"
             app:layout_constraintEnd_toEndOf="parent"

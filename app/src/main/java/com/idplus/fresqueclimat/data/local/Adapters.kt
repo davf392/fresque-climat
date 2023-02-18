@@ -1,7 +1,7 @@
 package com.idplus.fresqueclimat.data.local
 
 import com.idplus.fresqueclimat.data.local.entities.Session
-import com.idplus.fresqueclimat.ui.sessions.SessionItem
+import com.idplus.fresqueclimat.ui.explore.SessionItem
 
 fun List<Session>.asDomainModel(): List<SessionItem> {
     return map {

@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.session_details
+package com.idplus.fresqueclimat.ui.explore.session_details
 
 import androidx.lifecycle.ViewModel
 

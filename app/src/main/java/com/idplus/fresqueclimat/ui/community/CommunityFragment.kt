@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.animator
+package com.idplus.fresqueclimat.ui.community
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.idplus.fresqueclimat.R
 
-class NewsFragment : Fragment() {
+class CommunityFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        return inflater.inflate(R.layout.fragment_community, container, false)
     }
 }

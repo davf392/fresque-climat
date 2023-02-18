@@ -6,10 +6,10 @@
     <data>
         <variable
             name="clickListener"
-            type="com.idplus.fresqueclimat.ui.sessions.SessionItemAdapter.SessionListener" />
+            type="com.idplus.fresqueclimat.ui.explore.SessionItemAdapter.SessionListener" />
         <variable
             name="session"
-            type="com.idplus.fresqueclimat.ui.sessions.SessionItem" />
+            type="com.idplus.fresqueclimat.ui.explore.SessionItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -134,11 +134,11 @@
                 android:paddingHorizontal="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.842"
+                app:layout_constraintHorizontal_bias="0.92"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.493"
-                app:srcCompat="@drawable/ic_baseline_pageview_24" />
+                app:layout_constraintVertical_bias="0.494"
+                app:srcCompat="@drawable/ic_baseline_arrow_forward" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

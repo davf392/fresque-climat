@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.animator.resources
+package com.idplus.fresqueclimat.ui.resources
 
 import android.content.Intent
 import android.net.Uri

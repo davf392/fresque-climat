@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.sessions.SessionFragment">
+    tools:context=".ui.explore.ExploreSessionsFragment">
     <data>
         <variable
             name="session"
-            type="com.idplus.fresqueclimat.ui.sessions.SessionItem" />
+            type="com.idplus.fresqueclimat.ui.explore.SessionItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.animator.resources
+package com.idplus.fresqueclimat.ui.resources
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

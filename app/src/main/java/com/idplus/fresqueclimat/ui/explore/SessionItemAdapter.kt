@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.sessions
+package com.idplus.fresqueclimat.ui.explore
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
