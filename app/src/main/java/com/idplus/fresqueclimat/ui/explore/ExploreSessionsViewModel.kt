@@ -1,4 +1,4 @@
-package com.idplus.fresqueclimat.ui.sessions
+package com.idplus.fresqueclimat.ui.explore
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(
+class ExploreSessionsViewModel @Inject constructor(
     private val repository: SessionRepositoryImpl
 )
     : ViewModel() {
@@ -29,5 +29,9 @@ class SessionViewModel @Inject constructor(
 
     fun onSessionClicked(sessionItem: SessionItem) {
         _navigateToSessionDetails.value = sessionItem
+    }
+
+    fun doneNavigating() {
+        _navigateToSessionDetails.value = null
     }
 }
