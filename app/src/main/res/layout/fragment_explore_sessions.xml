@@ -12,7 +12,105 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:id="@+id/searchbar_sessions"
+            style="@style/TextAppearance.Material3.SearchBar"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:queryHint="Entrez le nom d'une ville"
+            app:layout_constraintEnd_toStartOf="@+id/icon_map_or_list_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/icon_map_or_list_view"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic_baseline_map_24"
+            app:layout_constraintBottom_toTopOf="@+id/filters"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+            android:id="@+id/filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="4dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchbar_sessions">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_tune_24"
+                    android:paddingHorizontal="5dp"
+                    android:text="Filters"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_distance_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_compass_24"
+                    android:paddingHorizontal="5dp"
+                    android:text="Rayon"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_filter_langage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_translate_24"
+                    android:paddingHorizontal="5dp"
+                    android:text="Language"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_filter_online"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_connected_tv_24"
+                    android:paddingHorizontal="5dp"
+                    android:text="En ligne"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_filter_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_accessibility_24"
+                    android:paddingHorizontal="5dp"
+                    android:text="Catégorie"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_sessions_list"
@@ -22,7 +120,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filters"
             tools:listitem="@layout/session_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
