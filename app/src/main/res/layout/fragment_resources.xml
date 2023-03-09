@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.idplus.fresqueclimat.ui.resources.ResourceViewModel" />
+            type="com.davidfz.fresqueclimat.ui.resources.ResourceViewModel" />
     </data>
 
     <LinearLayout

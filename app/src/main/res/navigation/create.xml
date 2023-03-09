@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/createSessionFragment"
-        android:name="com.idplus.fresqueclimat.ui.create.CreateSessionFragment"
+        android:name="com.davidfz.fresqueclimat.ui.create.CreateSessionFragment"
         android:label="Créer une session"
         tools:layout="@layout/fragment_create_session" />
 

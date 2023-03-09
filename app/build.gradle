@@ -11,7 +11,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.idplus.fresqueclimat"
+        applicationId "com.davidfz.fresqueclimat"
         minSdk 21
         targetSdk 33
         versionCode 1

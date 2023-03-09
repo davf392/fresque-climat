@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.idplus.fresqueclimat.ui.explore.ExploreSessionsViewModel" />
+            type="com.davidfz.fresqueclimat.ui.explore.ExploreSessionsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

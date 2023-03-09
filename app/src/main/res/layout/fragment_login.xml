@@ -8,7 +8,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.idplus.fresqueclimat.ui.login.LoginFragment" />
+            type="com.davidfz.fresqueclimat.ui.login.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

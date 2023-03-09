@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.idplus.fresqueclimat.ui.community.CommunityFragment">
+    tools:context="com.davidfz.fresqueclimat.ui.community.CommunityFragment">
     <data>
 
     </data>

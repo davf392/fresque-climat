@@ -6,7 +6,7 @@
     app:startDestination="@id/resourcesFragment">
     <fragment
         android:id="@+id/resourcesFragment"
-        android:name="com.idplus.fresqueclimat.ui.resources.ResourcesFragment"
+        android:name="com.davidfz.fresqueclimat.ui.resources.ResourcesFragment"
         android:label="Ressources"
         tools:layout="@layout/fragment_resources" />
 </navigation>

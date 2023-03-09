@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.idplus.fresqueclimat.ui.login.LoginFragment"
+        android:name="com.davidfz.fresqueclimat.ui.login.LoginFragment"
         android:label="Espace Animateur"
         tools:layout="@layout/fragment_login" >
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.idplus.fresqueclimat.ui.profile.ProfileFragment"
+        android:name="com.davidfz.fresqueclimat.ui.profile.ProfileFragment"
         android:label="Mon profil"
         tools:layout="@layout/fragment_profile" />
 

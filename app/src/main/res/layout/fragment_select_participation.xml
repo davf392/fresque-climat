@@ -7,7 +7,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.idplus.fresqueclimat.ui.explore.participate.SelectParticipationFragment" />
+            type="com.davidfz.fresqueclimat.ui.explore.participate.SelectParticipationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

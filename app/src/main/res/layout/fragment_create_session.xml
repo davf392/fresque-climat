@@ -7,11 +7,11 @@
     <data>
         <variable
             name="viewModel"
-            type="com.idplus.fresqueclimat.ui.create.CreateSessionViewModel" />
+            type="com.davidfz.fresqueclimat.ui.create.CreateSessionViewModel" />
         
         <variable
             name="fragment"
-            type="com.idplus.fresqueclimat.ui.create.CreateSessionFragment" />
+            type="com.davidfz.fresqueclimat.ui.create.CreateSessionFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

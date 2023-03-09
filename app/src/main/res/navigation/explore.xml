@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/selectParticipationFragment"
-        android:name="com.idplus.fresqueclimat.ui.explore.participate.SelectParticipationFragment"
+        android:name="com.davidfz.fresqueclimat.ui.explore.participate.SelectParticipationFragment"
         android:label="Je participe en tant que..."
         tools:layout="@layout/fragment_select_participation" >
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/exploreSessionsFragment"
-        android:name="com.idplus.fresqueclimat.ui.explore.ExploreSessionsFragment"
+        android:name="com.davidfz.fresqueclimat.ui.explore.ExploreSessionsFragment"
         android:label="Trouver un atelier"
         tools:layout="@layout/fragment_explore_sessions" >
         <action
@@ -36,12 +36,12 @@
 
     <fragment
         android:id="@+id/sessionDetailsFragment"
-        android:name="com.idplus.fresqueclimat.ui.explore.session_details.SessionDetailsFragment"
+        android:name="com.davidfz.fresqueclimat.ui.explore.session_details.SessionDetailsFragment"
         android:label="Détails Atelier"
         tools:layout="@layout/fragment_session_details">
         <argument
             android:name="session"
-            app:argType="com.idplus.fresqueclimat.ui.explore.SessionItem" />
+            app:argType="com.davidfz.fresqueclimat.ui.explore.SessionItem" />
     </fragment>
 
 </navigation>

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="clickListener"
-            type="com.idplus.fresqueclimat.ui.explore.SessionItemAdapter.SessionListener" />
+            type="com.davidfz.fresqueclimat.ui.explore.SessionItemAdapter.SessionListener" />
         <variable
             name="session"
-            type="com.idplus.fresqueclimat.ui.explore.SessionItem" />
+            type="com.davidfz.fresqueclimat.ui.explore.SessionItem" />
     </data>
 
     <androidx.cardview.widget.CardView
