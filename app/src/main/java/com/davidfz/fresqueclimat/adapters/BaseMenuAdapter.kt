@@ -1,4 +1,4 @@
-package com.davidfz.adapters
+package com.davidfz.fresqueclimat.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
