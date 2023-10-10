@@ -1,5 +1,13 @@
 # Fresque Climat Animateur
 
+Ce projet s'inspire fortement du site web de la Fresque du Climat à des fins de développement 
+et de démonstration, en utilisant des données factices.
+
+Veuillez noter qu'il ne s'agit en aucun cas d'une affiliation, d'une endorsement ou d'une copie 
+officielle du site web de la Fresque du Climat : https://association.climatefresk.org/
+
+Toutes les marques de commerce et droits d'auteur associés au site web appartiennent à leurs propriétaires respectifs.
+
 ## Description
 
 Cette application est principalement un outil à destination des animateurs de la Fresque du Climat.
