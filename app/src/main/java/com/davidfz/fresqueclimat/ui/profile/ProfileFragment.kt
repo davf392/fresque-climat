@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.BaseMenuAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +55,6 @@ class ProfileFragment : Fragment() {
     }
 
     fun goToProfileInfo() {
-//        navController.navigate()
+        navController.navigate(R.id.action_profileFragment_to_profileEditFragment)
     }
 }
