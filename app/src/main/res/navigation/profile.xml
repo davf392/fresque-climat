@@ -39,7 +39,7 @@
     <fragment
         android:id="@+id/profileEditFragment"
         android:name="com.davidfz.fresqueclimat.ui.profile.ProfileEditFragment"
-        android:label="ProfileEditFragment"
+        android:label="Modifier mon profil"
         tools:layout="@layout/fragment_profile_edit" />
 
 </navigation>
