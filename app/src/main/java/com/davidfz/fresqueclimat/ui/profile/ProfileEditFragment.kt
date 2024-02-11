@@ -1,5 +1,6 @@
 package com.davidfz.fresqueclimat.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,9 +42,26 @@ class ProfileEditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController()
+
+        setupProfilePicture()
         setupLanguageAdapter()
 
         binding.fragment = this@ProfileEditFragment
+    }
+
+    private fun setupProfilePicture() {
+        binding.buttonAddProfilePicture.setOnClickListener {
+            ImagePicker.with(this)
+                .crop()	    			                // crop image(optional), check customization for more option
+                .compress(1024)			        // final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)	// final image resolution will be less than 1080 x 1080 (Optional)
+                .start()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Glide.with(this).load(data?.data).circleCrop().into(binding.profilePicture)
     }
 
     private fun setupLanguageAdapter() {

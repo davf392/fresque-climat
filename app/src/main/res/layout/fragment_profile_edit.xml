@@ -20,9 +20,10 @@
             <!-- Profile Picture -->
             <ImageView
                 android:id="@+id/profilePicture"
-                android:layout_width="103dp"
-                android:layout_height="103dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/circle_background"
                 android:contentDescription="Profile Picture"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_anim_person"
@@ -31,11 +32,25 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- First Name -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/buttonAddProfilePicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"
+                android:contentDescription="edit profile picture"
+                android:focusable="true"
+                android:tint="@color/white"
+                app:fabCustomSize="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/profilePicture"
+                app:layout_constraintEnd_toEndOf="@+id/profilePicture"
+                app:srcCompat="@drawable/ic_camera_24" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilFirstName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profilePicture">
@@ -54,7 +69,7 @@
                 android:id="@+id/tilLastName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilFirstName">
@@ -73,7 +88,7 @@
                 android:id="@+id/tilEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilLastName">
@@ -92,7 +107,7 @@
                 android:id="@+id/tilCity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilEmail">
@@ -106,23 +121,30 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Telephone Number -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPhoneNumber"
+            <LinearLayout
+                android:id="@+id/llPhoneNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilCity">
 
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryCodePhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPhoneNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
                     android:hint="@string/telephone_number"
                     android:inputType="phone" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <!-- Language Spoken Multi-Selection with Close Buttons -->
             <LinearLayout
@@ -130,10 +152,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilPhoneNumber">
+                app:layout_constraintTop_toBottomOf="@+id/llPhoneNumber">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -196,7 +218,7 @@
             <!-- Save Changes Button -->
             <Button
                 android:id="@+id/btnSaveChanges"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/save_changes"
