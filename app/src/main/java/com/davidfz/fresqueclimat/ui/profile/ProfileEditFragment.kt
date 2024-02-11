@@ -14,7 +14,6 @@ import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
-import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -61,7 +60,11 @@ class ProfileEditFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Glide.with(this).load(data?.data).circleCrop().into(binding.profilePicture)
+        Glide.with(this)
+            .load(data?.data)
+            .circleCrop()
+            .error(R.drawable.ic_anim_person)
+            .into(binding.profilePicture)
     }
 
     private fun setupLanguageAdapter() {

@@ -93,7 +93,7 @@ Cet écran permet à l'animateur de rentrer ses identifiants afin de se connecte
 Cet écran est la page principale de l'espace animateur, il permet à l'animateur d'avoir un aperçu de son profil et son parcours de fresqueur ainsi que de gérer ses sessions d'animation passées et à venir
 Une fonctionnalité de personnalisation d'antisèche d'animation est actuellement en cours de développement (voir roadmap).
 
-<img src="app/demo/screenshot_fresque_climat_0007.png" width=30% height=30%> <img src="app/demo/screenshot_fresque_climat_0008.png" width=30% height=30%> 
+<img src="app/demo/screenshot_fresque_climat_0007.png" width=30% height=30%>    <img src="app/demo/screenshot_fresque_climat_0008.png" width=30% height=30%> 
 
 ## Roadmap
 
