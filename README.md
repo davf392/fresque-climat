@@ -1,7 +1,9 @@
 # Fresque Climat Animateur
 
-Ce projet s'inspire fortement du site web de la Fresque du Climat à des fins de développement 
+Ce projet s'inspire du site web de la Fresque du Climat à des fins de développement 
 et de démonstration, en utilisant des données factices.
+
+Cette application est actuellement en phase de prototypage et nous vous invitons à la tester et à nous faire part de vos retours d'expérience.
 
 Veuillez noter qu'il ne s'agit en aucun cas d'une affiliation, d'une endorsement ou d'une copie 
 officielle du site web de la Fresque du Climat : https://association.climatefresk.org/
@@ -23,7 +25,7 @@ Une fois connecté sur son espace personnel, l'animateur est en mesure de :
 
 L'appli permet également aux personnes qui ne sont pas animatrices de trouver un atelier de libre pour pouvoir s'y inscrire et y participer.
 
-## Dependencies 
+## Dépendances 
 
 les composants et librairies suivantes ont été utilisées pour développer cette appli:
 - MVVM + LiveData + Data Binding
@@ -31,18 +33,38 @@ les composants et librairies suivantes ont été utilisées pour développer cet
 - Dagger Hilt (Dependency Injection)
 - Room Database
 
-## Screenshots
+## Guide d'installation
+
+### Prérequis
+
+Avant de commencer, assurez-vous d'avoir les éléments suivants :
+- Un smartphone Android fonctionnel
+- Accès au dépôt GitHub de l'application
+
+### Installation
+
+1. Téléchargez la dernière version de l'application à partir de la section "Releases" de ce dépôt GitHub.
+2. Sur votre appareil Android, accédez aux paramètres de sécurité et activez l'option "Sources inconnues" ou "Installation à partir de sources inconnues". Cela vous permettra d'installer des applications depuis des sources autres que le Google Play Store.
+3. Ouvrez le fichier APK téléchargé depuis votre gestionnaire de fichiers ou depuis la barre de notifications.
+4. Suivez les instructions à l'écran pour installer l'application.
+5. Une fois l'installation terminée, vous pouvez ouvrir l'application en appuyant sur son icône dans le lanceur d'applications de votre appareil.
+
+### Remarques
+
+- Cette version de l'application est une version de prototypage et peut contenir des bugs ou des fonctionnalités non finalisées. Veuillez être conscient de cela avant de l'installer et de l'utiliser.
+- Nous vous encourageons vivement à nous faire part de vos retours d'expérience, notamment en signalant tout bug que vous rencontrez ou toute suggestion d'amélioration que vous pourriez avoir. Vous pouvez soumettre des problèmes via la section "Issues" de ce dépôt GitHub.
+
+## Guide d'utilisation
 
 ### Recherche d'ateliers existants
-Cet écran permet à l'animateur de chercher une session existante sur laquelle il peut s'inscrire.
-Plusieurs filtres sont disponibles permettant réduire le nombre de résultats selon les préférences. 
+Cet écran permet à l'animateur de chercher une session existante à laquelle il peut s'inscrire.
+Plusieurs filtres sont disponibles permettant de réduire le nombre de résultats selon les préférences. 
 
 <img src="app/demo/screenshot_fresque_climat_0001.png" width=30% height=30%> 
 
 ### Détails d'un atelier existant
 Cet écran apparaît lorsque l'animateur clique sur un atelier existant lors de la recherche.
-Il permet de visualiser la date, le lieu, la langue, le tarif, la description, l'auteur ainsi que 
-le nombre de participants et animateurs disponibles restants pour cet atelier.
+Il permet de visualiser la date, le lieu, la langue, le prix, la description, l'auteur ainsi que le nombre de participants et animateurs disponibles restants pour cet atelier.
 
 <img src="app/demo/screenshot_fresque_climat_0002.png" width=30% height=30%> 
 
@@ -68,11 +90,15 @@ Cet écran permet à l'animateur de rentrer ses identifiants afin de se connecte
 <img src="app/demo/screenshot_fresque_climat_0006.png" width=30% height=30%> 
 
 ### Espace animateur
-Cet écran est la page principale de l'espace animateur, il permet à l'animateur de 
-- visualiser et/ou modifier ses informations personnelles
-- gérer l'organisation de ses ateliers à venir
-- visualiser son parcours de fresqueur
-- créer/personnaliser son antisèche d'animation
-- se déconnecter de son espace
-- 
+Cet écran est la page principale de l'espace animateur, il permet à l'animateur d'avoir un aperçu de son profil et son parcours de fresqueur ainsi que de gérer ses sessions d'animation passées et à venir
+Une fonctionnalité de personnalisation d'antisèche d'animation est actuellement en cours de développement (voir roadmap).
+
 <img src="app/demo/screenshot_fresque_climat_0007.png" width=30% height=30%> 
+
+## Roadmap
+
+- visualisation des sessions publiques disponibles à venir au sein d'une carte géographique
+- visualisation et/ou modification de ses informations personnelles dans l'espace animateur
+- visualiser son parcours de fresqueur avec explication des prérequis pour accécer à chaque ceinture (blanche, orange, bleue, etc)
+- avoir accès au mémo des différentes cartes du jeu avec l'explication des liens possibles d'une carte avec les autres
+- créer et personnaliser son antisèche d'animation
