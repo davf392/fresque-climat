@@ -44,7 +44,7 @@ class ExploreSessionsFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        // observe & submit the list of asteroids to the adapter whenever it changes
+        // observe & submit the list of sessions to the adapter whenever it changes
         exploreSessionsViewModel.sessions.observe(viewLifecycleOwner) { sessions ->
             if (sessions != null) {
                 sessionListAdapter.submitList(sessions)
