@@ -5,7 +5,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.davidfz.fresqueclimat.ui.profile.ProfileEditFragment" />
+            type="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditFragment" />
     </data>
 
     <ScrollView
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            tools:context=".ui.profile.ProfileEditFragment">
+            tools:context=".ui.profile.edit_profile.ProfileEditFragment">
 
             <!-- Profile Picture -->
             <ImageView

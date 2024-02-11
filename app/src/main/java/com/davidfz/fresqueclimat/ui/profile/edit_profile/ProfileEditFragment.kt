@@ -1,4 +1,4 @@
-package com.davidfz.fresqueclimat.ui.profile
+package com.davidfz.fresqueclimat.ui.profile.edit_profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
+import com.davidfz.fresqueclimat.ui.profile.Language
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
