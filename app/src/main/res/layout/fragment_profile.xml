@@ -5,16 +5,16 @@
     <data>
         <variable
             name="viewModel"
-            type="com.davidfz.fresqueclimat.ui.profile.ProfileViewModel" />
+            type="com.davidfz.fresqueclimat.ui.profile.main.ProfileViewModel" />
         <variable
             name="fragment"
-            type="com.davidfz.fresqueclimat.ui.profile.ProfileFragment" />
+            type="com.davidfz.fresqueclimat.ui.profile.main.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.profile.ProfileFragment">
+        tools:context=".ui.profile.main.ProfileFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_profile"
@@ -23,7 +23,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            android:onClick="@{() -> fragment.goToProfileInfo()}"
+            android:onClick="@{() -> viewModel.onEditProfileClicked(viewModel.profile)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="PROFILE NAME"
+                    android:text="@{viewModel.profile.firstName}"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Lyon, France (FR)"
+                    android:text="@{viewModel.profile.homeCity}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/tv_profile_name"

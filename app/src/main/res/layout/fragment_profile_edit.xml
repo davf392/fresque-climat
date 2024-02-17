@@ -4,8 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="viewModel"
+            type="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditViewModel" />
+        <variable
             name="fragment"
             type="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditFragment" />
+        <variable
+            name="profile"
+            type="com.davidfz.fresqueclimat.data.remote.model.Profile" />
     </data>
 
     <ScrollView
@@ -60,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/first_name"
+                    android:text="@={viewModel.profile.firstName}"
                     android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -79,6 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/last_name"
+                    android:text="@={viewModel.profile.lastName}"
                     android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
+                    android:text="@={viewModel.profile.email}"
                     android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,6 +125,7 @@
                     android:id="@+id/editCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={viewModel.profile.homeCity}"
                     android:hint="@string/city" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -141,6 +151,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
+                    android:text="@={viewModel.profile.phoneNumber}"
                     android:hint="@string/telephone_number"
                     android:inputType="phone" />
 

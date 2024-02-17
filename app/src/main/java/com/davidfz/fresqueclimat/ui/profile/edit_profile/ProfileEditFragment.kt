@@ -2,18 +2,21 @@ package com.davidfz.fresqueclimat.ui.profile.edit_profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
-import com.davidfz.fresqueclimat.ui.profile.Language
+import com.davidfz.fresqueclimat.utils.Language
+import com.davidfz.fresqueclimat.ui.profile.main.ProfileViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,14 +26,10 @@ class ProfileEditFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileEditBinding
     private lateinit var navController: NavController
+    private val profileEditViewModel by viewModels<ProfileEditViewModel>()
 
-    private val selectedLanguages = mutableListOf<Language>()
-    private val availableLanguages = listOf(
-        Language(1, "Anglais"),
-        Language(2, "Français"),
-        Language(3, "Espagnol")
-        // Add more languages as needed
-    )
+    private var selectedLanguages = mutableListOf<String>()
+    private val availableLanguages = listOf("Anglais", "Français", "Espagnol")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragmentBinding = FragmentProfileEditBinding.inflate(inflater, container, false)
@@ -41,12 +40,28 @@ class ProfileEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d("ProfileEditFragment", "profile: ${profileEditViewModel.profile.value}")
+
+        binding.viewModel = profileEditViewModel
+        binding.profile = profileEditViewModel.profile.value
+        binding.lifecycleOwner = viewLifecycleOwner
         navController = findNavController()
 
         setupProfilePicture()
         setupLanguageAdapter()
+        observeLanguageChips()
 
         binding.fragment = this@ProfileEditFragment
+    }
+
+    private fun observeLanguageChips() {
+        profileEditViewModel.profile.observe(viewLifecycleOwner) { profile ->
+            profile?.languages?.let { languages ->
+                for (language in languages) {
+                    addChip(language)
+                }
+            }
+        }
     }
 
     private fun setupProfilePicture() {
@@ -81,7 +96,7 @@ class ProfileEditFragment : Fragment() {
             val selectedLanguage = adapter.getItem(position)
             if (selectedLanguage != null) {
                 selectedLanguages.add(selectedLanguage)
-                addChip(selectedLanguage.name)
+                addChip(selectedLanguage)
                 binding.autoCompleteLanguages.text.clear()
                 adapter.updateData(availableLanguages.toList(), selectedLanguages)
             }
@@ -95,7 +110,7 @@ class ProfileEditFragment : Fragment() {
 
         chipView.findViewById<TextView>(R.id.chipCloseButton).setOnClickListener {
             binding.flexboxLanguages.removeView(chipView)
-            val languageToRemove = selectedLanguages.find { it.name == languageName }
+            val languageToRemove = selectedLanguages.find { it == languageName }
             if (languageToRemove != null) {
                 selectedLanguages.remove(languageToRemove)
             }

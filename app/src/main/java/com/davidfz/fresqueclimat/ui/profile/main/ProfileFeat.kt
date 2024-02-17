@@ -1,4 +1,4 @@
-package com.davidfz.fresqueclimat.ui.profile
+package com.davidfz.fresqueclimat.ui.profile.main
 
 enum class ProfileFeat(val nameItem: String) {
     SESSIONS("Mes sessions à venir"),

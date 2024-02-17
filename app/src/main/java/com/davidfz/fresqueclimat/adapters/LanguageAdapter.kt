@@ -3,15 +3,15 @@ package com.davidfz.fresqueclimat.adapters
 import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.Filter
-import com.davidfz.fresqueclimat.ui.profile.Language
+import com.davidfz.fresqueclimat.utils.Language
 
 class LanguageAdapter (
     context: Context,
     resource: Int,
-    var availableLanguages: List<Language>,
-    var selectedLanguages: MutableList<Language>
+    var availableLanguages: List<String>,
+    var selectedLanguages: MutableList<String>
 ) :
-    ArrayAdapter<Language>(context, resource, availableLanguages) {
+    ArrayAdapter<String>(context, resource, availableLanguages) {
 
     private val filter: Filter = LanguageFilter()
 
@@ -19,7 +19,7 @@ class LanguageAdapter (
         return filter
     }
 
-    fun updateData(availableLanguages: List<Language>, selectedLanguages: MutableList<Language>) {
+    fun updateData(availableLanguages: List<String>, selectedLanguages: MutableList<String>) {
         this.availableLanguages = availableLanguages
         this.selectedLanguages = selectedLanguages
     }
@@ -31,7 +31,7 @@ class LanguageAdapter (
 
             if (constraint != null) {
                 val filteredLanguages = availableLanguages
-                    .filter { it.name.lowercase().contains(constraint.toString().lowercase()) }
+                    .filter { it.lowercase().contains(constraint.toString().lowercase()) }
                     .filterNot { selectedLanguages.contains(it) }
 
                 results.values = filteredLanguages
@@ -43,7 +43,7 @@ class LanguageAdapter (
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             if (results != null && results.count > 0) {
                 @Suppress("UNCHECKED_CAST")
-                val filteredLanguages = results.values as List<Language>
+                val filteredLanguages = results.values as List<String>
                 clear()
                 addAll(filteredLanguages)
                 notifyDataSetChanged()

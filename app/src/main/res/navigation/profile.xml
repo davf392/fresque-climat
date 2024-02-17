@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.davidfz.fresqueclimat.ui.profile.ProfileFragment"
+        android:name="com.davidfz.fresqueclimat.ui.profile.main.ProfileFragment"
         android:label="Mon profil"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -40,6 +40,11 @@
         android:id="@+id/profileEditFragment"
         android:name="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditFragment"
         android:label="Modifier mon profil"
-        tools:layout="@layout/fragment_profile_edit" />
+        tools:layout="@layout/fragment_profile_edit">
+
+        <argument
+            android:name="profile"
+            app:argType="com.davidfz.fresqueclimat.data.remote.model.Profile" />
+    </fragment>
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.davidfz.fresqueclimat.ui.profile
+package com.davidfz.fresqueclimat.ui.profile.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.BaseMenuAdapter
+import com.davidfz.fresqueclimat.data.remote.model.Profile
 import com.davidfz.fresqueclimat.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,9 +36,20 @@ class ProfileFragment : Fragment() {
         navController = findNavController()
 
         setupRecyclerView()
+        setupObservers()
 
         binding.fragment = this@ProfileFragment
     }
+
+    private fun setupObservers() {
+        profileViewModel.navigateToProfileEdit.observe(viewLifecycleOwner) { profile ->
+            if (profile != null) {
+                navigateToEditProfile(profile)
+                profileViewModel.doneNavigating()
+            }
+        }
+    }
+
 
     private fun setupRecyclerView() {
         val list = mutableListOf<String>()
@@ -58,7 +69,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    fun goToProfileInfo() {
-        navController.navigate(R.id.action_profileFragment_to_profileEditFragment)
+    private fun navigateToEditProfile(profile: Profile) {
+        navController.navigate(
+            ProfileFragmentDirections.actionProfileFragmentToProfileEditFragment(
+                profile
+            )
+        )
     }
 }

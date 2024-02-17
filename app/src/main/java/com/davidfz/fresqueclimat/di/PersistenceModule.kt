@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.annotation.NonNull
 import androidx.room.Room
 import com.davidfz.fresqueclimat.data.local.FreskDatabase
+import com.davidfz.fresqueclimat.data.local.dao.ProfileDao
 import com.davidfz.fresqueclimat.data.local.dao.ResourceDao
 import com.davidfz.fresqueclimat.data.local.dao.SessionDao
 import com.davidfz.fresqueclimat.utils.Constants.DATABASE_NAME
@@ -36,4 +37,9 @@ object PersistenceModule {
     @Singleton
     fun provideResourceDao(@NonNull database: FreskDatabase): ResourceDao =
         database.resourceDao()
+
+    @Provides
+    @Singleton
+    fun provideProfileDao(@NonNull database: FreskDatabase): ProfileDao =
+        database.profileDao()
 }

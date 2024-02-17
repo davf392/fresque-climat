@@ -1,4 +1,4 @@
-package com.davidfz.fresqueclimat.ui.profile
+package com.davidfz.fresqueclimat.utils
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
