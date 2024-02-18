@@ -1,8 +1,7 @@
-package com.davidfz.fresqueclimat.ui.profile.edit_profile
+package com.davidfz.fresqueclimat.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,8 +14,6 @@ import com.bumptech.glide.Glide
 import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
-import com.davidfz.fresqueclimat.utils.Language
-import com.davidfz.fresqueclimat.ui.profile.main.ProfileViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +23,7 @@ class ProfileEditFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileEditBinding
     private lateinit var navController: NavController
-    private val profileEditViewModel by viewModels<ProfileEditViewModel>()
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
     private var selectedLanguages = mutableListOf<String>()
     private val availableLanguages = listOf("Anglais", "Français", "Espagnol")
@@ -40,10 +37,8 @@ class ProfileEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("ProfileEditFragment", "profile: ${profileEditViewModel.profile.value}")
-
-        binding.viewModel = profileEditViewModel
-        binding.profile = profileEditViewModel.profile.value
+        binding.viewModel = profileViewModel
+        binding.profile = profileViewModel.profile.value
         binding.lifecycleOwner = viewLifecycleOwner
         navController = findNavController()
 
@@ -55,7 +50,7 @@ class ProfileEditFragment : Fragment() {
     }
 
     private fun observeLanguageChips() {
-        profileEditViewModel.profile.observe(viewLifecycleOwner) { profile ->
+        profileViewModel.profile.observe(viewLifecycleOwner) { profile ->
             profile?.languages?.let { languages ->
                 for (language in languages) {
                     addChip(language)

@@ -5,16 +5,16 @@
     <data>
         <variable
             name="viewModel"
-            type="com.davidfz.fresqueclimat.ui.profile.main.ProfileViewModel" />
+            type="com.davidfz.fresqueclimat.ui.profile.ProfileViewModel" />
         <variable
             name="fragment"
-            type="com.davidfz.fresqueclimat.ui.profile.main.ProfileFragment" />
+            type="com.davidfz.fresqueclimat.ui.profile.ProfileFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.profile.main.ProfileFragment">
+        tools:context=".ui.profile.ProfileFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardview_profile"

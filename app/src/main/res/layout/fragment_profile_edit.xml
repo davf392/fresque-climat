@@ -5,10 +5,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditViewModel" />
+            type="com.davidfz.fresqueclimat.ui.profile.ProfileViewModel" />
         <variable
             name="fragment"
-            type="com.davidfz.fresqueclimat.ui.profile.edit_profile.ProfileEditFragment" />
+            type="com.davidfz.fresqueclimat.ui.profile.ProfileEditFragment" />
         <variable
             name="profile"
             type="com.davidfz.fresqueclimat.data.remote.model.Profile" />
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="8dp"
-            tools:context=".ui.profile.edit_profile.ProfileEditFragment">
+            tools:context=".ui.profile.ProfileEditFragment">
 
             <!-- Profile Picture -->
             <ImageView

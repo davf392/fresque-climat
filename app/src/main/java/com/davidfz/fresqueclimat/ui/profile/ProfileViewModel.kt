@@ -1,4 +1,4 @@
-package com.davidfz.fresqueclimat.ui.profile.main
+package com.davidfz.fresqueclimat.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
