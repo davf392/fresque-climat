@@ -1,5 +1,6 @@
 package com.davidfz.fresqueclimat.data.remote.repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.davidfz.fresqueclimat.data.local.dao.ProfileDao
@@ -12,9 +13,12 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private val dao: ProfileDao
 )
-    : ProfileRepository {
-    override fun getUserProfile(): LiveData<Profile> {
-        return dao.get().map { it.asDomainModel() }
+ : ProfileRepository {
+
+    private val TAG = "ProfileRepositoryImpl"
+
+    override fun getUserProfile(): LiveData<Profile?> {
+        return dao.get().map { it?.asDomainModel() }
     }
 
     override suspend fun updateUserProfile(profile: Profile) {
@@ -22,20 +26,25 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun refreshProfile() {
+        val firstName = "David"
+        val lastName = "Fourdrigniez"
+        val email = "davidfourdrigniez@protonmail.com"
+        val phone = "+33627940325"
+        val city = "Lyon"
+
         dao.insert(
             ProfileItem(
-                0L,
-                "David",
-                "Fourdrigniez",
-                "Alès",
-                "davidfourdrigniez@protonmail.com",
-                "0627940325",
+                1L,
+                firstName,
+                lastName,
+                city,
+                email,
+                phone,
                 listOf("French", "English"),
                 true,
                 false,
                 false
             )
         )
-
     }
 }

@@ -18,21 +18,39 @@ class ProfileViewModel @Inject constructor(
 )
     : ViewModel() {
 
+    var selectedLanguages = mutableListOf<String>()
+    val availableLanguages = listOf("Anglais", "Français", "Espagnol")
+
     val profile = repository.getUserProfile()
 
     private val _navigateToProfileEdit = MutableLiveData<Profile?>()
     val navigateToProfileEdit: LiveData<Profile?> get() = _navigateToProfileEdit
 
-    private val _userFirstName = MutableLiveData<String>()
-    val userFirstName: LiveData<String> get() = _userFirstName
+    private val _countryCode = MutableLiveData<String>()
+    val countryCode: LiveData<String> get() = _countryCode
 
-    private val _userCity = MutableLiveData<String>()
-    val userCity: LiveData<String> get() = _userCity
+    private val _phoneNumber = MutableLiveData<String>()
+    val phoneNumber: LiveData<String> get() = _phoneNumber
 
     init {
         viewModelScope.launch {
             repository.refreshProfile()
         }
+    }
+
+    fun updateChanges() = viewModelScope.launch {
+        profile.value?.let { profile ->
+            profile.phoneNumber = "${_countryCode.value}${_phoneNumber.value}"
+            repository.updateUserProfile(profile)
+        }
+    }
+
+    fun savePhoneNumber(phoneNumber: String) {
+        _phoneNumber.value = phoneNumber
+    }
+
+    fun setCountryCode(phoneCode: String) {
+        _countryCode.value = phoneCode
     }
 
     // Method to trigger navigation to profile edit screen

@@ -146,14 +146,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/editPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
-                    android:text="@={viewModel.profile.phoneNumber}"
                     android:hint="@string/telephone_number"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:singleLine="true" />
 
             </LinearLayout>
 

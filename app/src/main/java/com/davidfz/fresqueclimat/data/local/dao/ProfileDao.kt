@@ -7,7 +7,7 @@ import com.davidfz.fresqueclimat.data.local.entities.ProfileItem
 @Dao
 interface ProfileDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(profile: ProfileItem)
 
     @Update
@@ -17,5 +17,5 @@ interface ProfileDao {
     suspend fun delete(profile: ProfileItem)
 
     @Query("SELECT * FROM profile LIMIT 1")
-    fun get(): LiveData<ProfileItem>
+    fun get(): LiveData<ProfileItem?>
 }
