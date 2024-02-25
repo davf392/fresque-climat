@@ -1,7 +1,7 @@
 package com.davidfz.fresqueclimat.di
 
+import com.davidfz.fresqueclimat.data.remote.repositories.FakeProfileRepository
 import com.davidfz.fresqueclimat.data.remote.repositories.ProfileRepository
-import com.davidfz.fresqueclimat.data.remote.repositories.ProfileRepositoryImpl
 import com.davidfz.fresqueclimat.data.remote.repositories.ResourcesRepository
 import com.davidfz.fresqueclimat.data.remote.repositories.ResourcesRepositoryImpl
 import com.davidfz.fresqueclimat.data.remote.repositories.SessionRepository
@@ -22,5 +22,5 @@ abstract class RepositoryModule {
     abstract fun bindResourcesRepository(impl: ResourcesRepositoryImpl): ResourcesRepository
 
     @Binds
-    abstract fun bindProfileRepository(impl: ProfileRepositoryImpl): ProfileRepository
+    abstract fun bindProfileRepository(impl: FakeProfileRepository): ProfileRepository
 }

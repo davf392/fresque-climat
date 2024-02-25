@@ -4,22 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.davidfz.fresqueclimat.data.local.entities.ProfileItem
 import com.davidfz.fresqueclimat.data.remote.model.Profile
-import com.davidfz.fresqueclimat.data.remote.repositories.ProfileRepositoryImpl
+import com.davidfz.fresqueclimat.data.remote.repositories.FakeProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-//import com.davidfz.fresqueclimat.data.remote.repositories.ProfileRepositoryImpl
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val repository: ProfileRepositoryImpl
+    private val repository: FakeProfileRepository
 )
     : ViewModel() {
 
     var selectedLanguages = mutableListOf<String>()
     val availableLanguages = listOf("Anglais", "Français", "Espagnol")
+    private var isInitialized = false
 
     val profile = repository.getUserProfile()
 
@@ -34,7 +33,10 @@ class ProfileViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.refreshProfile()
+            if (!isInitialized) {
+                repository.insertProfile(FakeProfileRepository.FAKE_PROFILE)
+                isInitialized = true
+            }
         }
     }
 
