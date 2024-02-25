@@ -25,6 +25,9 @@ class ProfileViewModel @Inject constructor(
     private val _navigateToProfileEdit = MutableLiveData<Profile?>()
     val navigateToProfileEdit: LiveData<Profile?> get() = _navigateToProfileEdit
 
+    private val _isProfileSaved = MutableLiveData<Boolean>()
+    val isProfileSaved: LiveData<Boolean> get() = _isProfileSaved
+
     private val _countryCode = MutableLiveData<String>()
     val countryCode: LiveData<String> get() = _countryCode
 
@@ -43,6 +46,7 @@ class ProfileViewModel @Inject constructor(
     fun updateChanges() = viewModelScope.launch {
         profile.value?.let { profile ->
             profile.phoneNumber = "${_countryCode.value}${_phoneNumber.value}"
+            profile.languages = selectedLanguages
             repository.updateUserProfile(profile)
         }
     }
@@ -62,5 +66,15 @@ class ProfileViewModel @Inject constructor(
 
     fun doneNavigating() {
         _navigateToProfileEdit.value = null
+    }
+
+    fun saveProfile() {
+        _isProfileSaved.value = true
+    }
+
+    fun removeLanguage(languageToRemove: String?) {
+        if (languageToRemove != null) {
+            selectedLanguages.remove(languageToRemove)
+        }
     }
 }

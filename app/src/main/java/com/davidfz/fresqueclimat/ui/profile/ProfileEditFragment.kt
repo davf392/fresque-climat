@@ -16,6 +16,7 @@ import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.LanguageAdapter
 import com.davidfz.fresqueclimat.databinding.FragmentProfileEditBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -43,39 +44,34 @@ class ProfileEditFragment : Fragment() {
 
         setupProfilePicture()
         setupLanguageAdapter()
+        setupProfileObserver()
         setupCountryCodeAndPhoneNumber()
-        initLanguageChips()
-
-        binding.btnSaveChanges.setOnClickListener {
-            val phone = binding.editPhoneNumber.text.toString().filter { !it.isWhitespace() }
-            Log.d(TAG, "saving changes")
-            profileViewModel.savePhoneNumber(phone)
-            profileViewModel.updateChanges()
-        }
+        setupSaveProfileButton()
 
         binding.fragment = this@ProfileEditFragment
     }
 
     private fun setupCountryCodeAndPhoneNumber() {
         binding.countryCodePhoneNumber.registerCarrierNumberEditText(binding.editPhoneNumber)
-        profileViewModel.profile.observe(viewLifecycleOwner) { profile ->
-            binding.countryCodePhoneNumber.fullNumber = profile?.phoneNumber ?: ""
-            Log.d(TAG, "profile phone number is : ${profile?.phoneNumber}")
-        }
         binding.countryCodePhoneNumber.setOnCountryChangeListener {
             Log.d(TAG, "selected country code: ${binding.countryCodePhoneNumber.selectedCountryCodeWithPlus}")
             profileViewModel.setCountryCode(binding.countryCodePhoneNumber.selectedCountryCodeWithPlus)
         }
     }
 
-    private fun initLanguageChips() {
+    private fun setupProfileObserver() {
         profileViewModel.profile.observe(viewLifecycleOwner) { profile ->
+            // init language chips
             profile?.languages?.let { languages ->
                 for (language in languages) {
                     if (language !in profileViewModel.selectedLanguages)
                         addChip(language)
                 }
             }
+
+            // setup country code picker and phone edit text
+            binding.countryCodePhoneNumber.fullNumber = profile?.phoneNumber ?: ""
+            Log.d(TAG, "profile phone number is : ${profile?.phoneNumber}")
         }
     }
 
@@ -86,6 +82,26 @@ class ProfileEditFragment : Fragment() {
                 .compress(1024)			        // final image size will be less than 1 MB(Optional)
                 .maxResultSize(1080, 1080)	// final image resolution will be less than 1080 x 1080 (Optional)
                 .start()
+        }
+    }
+
+    private fun setupSaveProfileButton() {
+        binding.btnSaveChanges.setOnClickListener {
+            Log.d(TAG, "saving changes")
+
+            // remove white spaces in phone number and save it
+            val phone = binding.editPhoneNumber.text.toString().filter { !it.isWhitespace() }
+            profileViewModel.savePhoneNumber(phone)
+            profileViewModel.updateChanges()
+            profileViewModel.saveProfile()
+        }
+
+        profileViewModel.isProfileSaved.observe(viewLifecycleOwner) { isSaved ->
+            if (isSaved) {
+                // display a snackbar to inform the user and navigate back to previous fragment
+                findNavController().popBackStack()
+                Snackbar.make(binding.root, "Profile information saved", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -112,7 +128,10 @@ class ProfileEditFragment : Fragment() {
             if (selectedLanguage != null) {
                 addChip(selectedLanguage)
                 binding.autoCompleteLanguages.text.clear()
-                adapter.updateData(profileViewModel.availableLanguages.toList(), profileViewModel.selectedLanguages)
+                adapter.updateData(
+                    profileViewModel.availableLanguages.toList(),
+                    profileViewModel.selectedLanguages
+                )
             }
         }
     }
@@ -124,10 +143,7 @@ class ProfileEditFragment : Fragment() {
 
         chipView.findViewById<TextView>(R.id.chipCloseButton).setOnClickListener {
             binding.flexboxLanguages.removeView(chipView)
-            val languageToRemove = profileViewModel.selectedLanguages.find { it == languageName }
-            if (languageToRemove != null) {
-                profileViewModel.selectedLanguages.remove(languageToRemove)
-            }
+            profileViewModel.removeLanguage(profileViewModel.selectedLanguages.find { it == languageName })
         }
         binding.flexboxLanguages.addView(chipView)
         profileViewModel.selectedLanguages.add(languageName)
