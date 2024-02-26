@@ -24,8 +24,6 @@ class ProfileRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertProfile(newProfile: Profile?) {
-        if (newProfile != null) {
-            dao.insert(newProfile.asDatabaseModel())
-        }
+
     }
 }

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.davidfz.fresqueclimat.R
 import com.davidfz.fresqueclimat.adapters.BaseMenuAdapter
 import com.davidfz.fresqueclimat.data.remote.model.Profile
 import com.davidfz.fresqueclimat.databinding.FragmentProfileBinding
@@ -49,9 +51,18 @@ class ProfileFragment : Fragment() {
 
     private fun setupObservers() {
         profileViewModel.navigateToProfileEdit.observe(viewLifecycleOwner) { profile ->
-            if (profile != null) {
-                navigateToEditProfile(profile)
+            profile?.let {
+                navigateToEditProfile(it)
                 profileViewModel.doneNavigating()
+            }
+        }
+        profileViewModel.profile.observe(viewLifecycleOwner) { profile ->
+            profile?.profilePictureUri?.let { picture ->
+                Glide.with(this)
+                    .load(picture)
+                    .circleCrop()
+                    .error(R.drawable.ic_anim_person)
+                    .into(binding.imageProfilePic)
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.davidfz.fresqueclimat.data.local.entities
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -16,7 +17,8 @@ class ProfileItem(
     @ColumnInfo(name = "languages")             var languages: List<String>,
     @ColumnInfo(name = "isPublic")              var isPublic: Boolean,
     @ColumnInfo(name = "anim_company")          var isAnimatingInCompany: Boolean,
-    @ColumnInfo(name = "anim_commercial")       var isAnimatingAsCommercial: Boolean
+    @ColumnInfo(name = "anim_commercial")       var isAnimatingAsCommercial: Boolean,
+    @ColumnInfo(name = "profile_picture_uri")   var profilePictureUri: String?
 )
 
 fun Profile.asDatabaseModel(): ProfileItem {
@@ -30,7 +32,8 @@ fun Profile.asDatabaseModel(): ProfileItem {
         languages = this.languages,
         isPublic = this.isPublic,
         isAnimatingInCompany = this.isAnimatingInCompany,
-        isAnimatingAsCommercial = this.isAnimatingAsCommercial
+        isAnimatingAsCommercial = this.isAnimatingAsCommercial,
+        profilePictureUri = this.profilePictureUri.toString()
     )
 }
 
@@ -45,6 +48,7 @@ fun ProfileItem.asDomainModel(): Profile {
         languages = this.languages,
         isPublic = this.isPublic,
         isAnimatingInCompany = this.isAnimatingInCompany,
-        isAnimatingAsCommercial = this.isAnimatingAsCommercial
+        isAnimatingAsCommercial = this.isAnimatingAsCommercial,
+        profilePictureUri = this.profilePictureUri.let { Uri.parse(it) }
     )
 }

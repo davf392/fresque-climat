@@ -1,5 +1,6 @@
 package com.davidfz.fresqueclimat.data.remote.model
 
+import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
@@ -14,6 +15,7 @@ data class Profile (
     var languages: List<String>,
     var isPublic: Boolean,
     var isAnimatingInCompany: Boolean,
-    var isAnimatingAsCommercial: Boolean
+    var isAnimatingAsCommercial: Boolean,
+    var profilePictureUri: Uri?
 )
     : Parcelable

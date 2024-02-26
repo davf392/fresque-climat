@@ -1,6 +1,7 @@
 package com.davidfz.fresqueclimat.ui.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -68,6 +69,10 @@ class ProfileEditFragment : Fragment() {
                         addChip(language)
                 }
             }
+            profile?.profilePictureUri?.let { picture ->
+                Log.d(TAG, "loading profile picture : $picture")
+                loadPicture(picture)
+            }
 
             // setup country code picker and phone edit text
             binding.countryCodePhoneNumber.fullNumber = profile?.phoneNumber ?: ""
@@ -107,8 +112,13 @@ class ProfileEditFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        loadPicture(data?.data)
+        profileViewModel.saveProfilePicture(data?.data)
+    }
+
+    private fun loadPicture(data: Uri?) {
         Glide.with(this)
-            .load(data?.data)
+            .load(data)
             .circleCrop()
             .error(R.drawable.ic_anim_person)
             .into(binding.profilePicture)

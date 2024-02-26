@@ -1,26 +1,31 @@
 package com.davidfz.fresqueclimat.ui.profile
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.davidfz.fresqueclimat.data.remote.model.Profile
-import com.davidfz.fresqueclimat.data.remote.repositories.FakeProfileRepository
+import com.davidfz.fresqueclimat.data.remote.repositories.ProfileRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val repository: FakeProfileRepository
+    private val repository: ProfileRepositoryImpl
 )
     : ViewModel() {
 
+    private val TAG = "ProfileViewModel"
+
     var selectedLanguages = mutableListOf<String>()
     val availableLanguages = listOf("Anglais", "Français", "Espagnol")
-    private var isInitialized = false
 
     val profile = repository.getUserProfile()
+
+    private val _selectedProfilePicture= MutableLiveData <Uri?>()
+    val selectedProfilePicture: LiveData<Uri?> get() = _selectedProfilePicture
 
     private val _navigateToProfileEdit = MutableLiveData<Profile?>()
     val navigateToProfileEdit: LiveData<Profile?> get() = _navigateToProfileEdit
@@ -34,17 +39,12 @@ class ProfileViewModel @Inject constructor(
     private val _phoneNumber = MutableLiveData<String>()
     val phoneNumber: LiveData<String> get() = _phoneNumber
 
-    init {
-        viewModelScope.launch {
-            if (!isInitialized) {
-                repository.insertProfile(FakeProfileRepository.FAKE_PROFILE)
-                isInitialized = true
-            }
-        }
-    }
 
     fun updateChanges() = viewModelScope.launch {
         profile.value?.let { profile ->
+            if (_selectedProfilePicture.value != null) {
+                profile.profilePictureUri = _selectedProfilePicture.value
+            }
             profile.phoneNumber = "${_countryCode.value}${_phoneNumber.value}"
             profile.languages = selectedLanguages
             repository.updateUserProfile(profile)
@@ -76,5 +76,9 @@ class ProfileViewModel @Inject constructor(
         if (languageToRemove != null) {
             selectedLanguages.remove(languageToRemove)
         }
+    }
+
+    fun saveProfilePicture(pictureUri: Uri?) {
+        _selectedProfilePicture.value = pictureUri
     }
 }
