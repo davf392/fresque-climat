@@ -49,6 +49,6 @@ fun ProfileItem.asDomainModel(): Profile {
         isPublic = this.isPublic,
         isAnimatingInCompany = this.isAnimatingInCompany,
         isAnimatingAsCommercial = this.isAnimatingAsCommercial,
-        profilePictureUri = this.profilePictureUri.let { Uri.parse(it) }
+        profilePictureUri = if (this.profilePictureUri != null) Uri.parse(this.profilePictureUri) else Uri.EMPTY
     )
 }
