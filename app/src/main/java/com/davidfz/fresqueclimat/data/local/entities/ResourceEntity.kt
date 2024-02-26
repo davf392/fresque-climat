@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "resources")
-class Resource(
+class ResourceEntity(
     @PrimaryKey(autoGenerate = true)    var resourceId: Long = 0L,
     @ColumnInfo(name = "title")         var title: String?,
     @ColumnInfo(name = "description")   var description: String?,

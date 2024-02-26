@@ -2,9 +2,9 @@ package com.davidfz.fresqueclimat.data.remote.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.davidfz.fresqueclimat.data.local.asDomainModel
 import com.davidfz.fresqueclimat.data.local.dao.SessionDao
-import com.davidfz.fresqueclimat.data.local.entities.Session
+import com.davidfz.fresqueclimat.data.local.entities.SessionEntity
+import com.davidfz.fresqueclimat.data.local.entities.asDomainModel
 import com.davidfz.fresqueclimat.ui.explore.SessionItem
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,7 +27,7 @@ class SessionRepositoryImpl @Inject constructor(
 
         dao.insertAll(
             arrayOf(
-                Session(
+                SessionEntity(
                     1, dateTime, "Lyon", "France",
                     2, "presential", "atelier", "fr",
                     5, 4, 2, 2,
@@ -35,35 +35,35 @@ class SessionRepositoryImpl @Inject constructor(
                     "David Fourdrigniez",
                     "davidfourdrigniez@protonmail.com"
                 ),
-                Session(2, dateTime, "Marseille", "France",
+                SessionEntity(2, dateTime, "Marseille", "France",
                     3, "presential", "atelier", "fr",
                     12, 4, 5, 2,
                     "L\'organisateur·rice n\'a pas écrit de description pour cette session",
                     "David Fourdrigniez",
                     "davidfourdrigniez@protonmail.com"
                 ),
-                Session(3, dateTime, "", "",
+                SessionEntity(3, dateTime, "", "",
                     3, "online", "workshop", "it",
                     12, 3, 2, 3,
                     "L\'organisateur·rice n\'a pas écrit de description pour cette session",
                     "David Fourdrigniez",
                     "davidfourdrigniez@protonmail.com"
                 ),
-                Session(4, dateTime, "Mexico City", "Mexique",
+                SessionEntity(4, dateTime, "Mexico City", "Mexique",
                     3, "presential", "atelier", "fr",
                     12, 1, 7, 1,
                     "L\'organisateur·rice n\'a pas écrit de description pour cette session",
                     "David Fourdrigniez",
                     "davidfourdrigniez@protonmail.com"
                 ),
-                Session(5, dateTime, "Grenoble", "France",
+                SessionEntity(5, dateTime, "Grenoble", "France",
                     3, "presential", "atelier", "ar",
                     12, 2, 7, 1,
                     "L\'organisateur·rice n\'a pas écrit de description pour cette session",
                     "David Fourdrigniez",
                     "davidfourdrigniez@protonmail.com"
                 ),
-                Session(6, dateTime, "Marseille", "France",
+                SessionEntity(6, dateTime, "Marseille", "France",
                     3, "presential", "atelier", "fr",
                     12, 4, 9, 4,
                     "L\'organisateur·rice n\'a pas écrit de description pour cette session",

@@ -4,4 +4,15 @@
     <string name="text_list_session_nb_slots_facilitators">%d anima·teur·trice·s restant·e·s</string>
     <string name="home_description_fresk">Vous voulez agir pour le climat mais n’avez pas le temps de devenir climatologue ?\n\nEn 3 heures, l’atelier collaboratif « la Fresque du Climat » permet de comprendre l’essentiel des enjeux climatiques pour passer à l’action.</string>
     <string name="text_session_price">Tarif libre (€ %.2f)</string>
+    <string name="save_changes">Enregistrer</string>
+    <string name="first_name">Prénom</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="email">Email</string>
+    <string name="city">Ville</string>
+    <string name="telephone_number">Téléphone</string>
+    <string name="languages_spoken">Langues d\'animation</string>
+    <string name="language_search">Chercher une langue</string>
+    <string name="can_be_contacted_by_the_community">J\'accepte d\'être contacté par la communauté et de figurer dans l\'annuaire interne</string>
+    <string name="animating_within_a_company">J\'anime en interne dans mon organisation</string>
+    <string name="professional_animator">J\'anime dans un cadre commercial</string>
 </resources>

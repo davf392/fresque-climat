@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.davidfz.fresqueclimat.R
-import com.davidfz.fresqueclimat.data.local.entities.Resource
+import com.davidfz.fresqueclimat.data.local.entities.ResourceEntity
 
 
 
 class ResourceItemAdapter : RecyclerView.Adapter<ResourceItemAdapter.ResourceItemViewHolder>() {
 
-    var data = listOf<Resource>()
+    var data = listOf<ResourceEntity>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -43,7 +43,7 @@ class ResourceItemAdapter : RecyclerView.Adapter<ResourceItemAdapter.ResourceIte
             }
         }
 
-        fun bind(item: Resource) {
+        fun bind(item: ResourceEntity) {
             resourceTitle.text = item.title
             resourceDescription.text = item.description
 
