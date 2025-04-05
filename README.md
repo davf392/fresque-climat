@@ -1,7 +1,6 @@
 # Fresque Climat Animateur
 
-Ce projet s'inspire du site web de la Fresque du Climat à des fins de développement 
-et de démonstration, en utilisant des données factices.
+Ce projet s'inspire du site web de la Fresque du Climat à des fins de développement et de démonstration, en utilisant des données factices.
 
 Cette application est actuellement en phase de prototypage et nous vous invitons à la tester et à nous faire part de vos retours d'expérience.
 
@@ -28,9 +27,8 @@ L'appli permet également aux personnes qui ne sont pas animatrices de trouver u
 ## Dépendances 
 
 les composants et librairies suivantes ont été utilisées pour développer cette appli:
-- MVVM + LiveData + Data Binding
-- Navigation + Safe Args
-- Dagger Hilt (Dependency Injection)
+- MVVM + StateFlow
+- Jetpack Compose
 - Room Database
 
 ## Guide d'installation
