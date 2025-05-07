@@ -1,9 +1,8 @@
-package com.davidfz.animfresque.ui.animate
+package com.davidfz.animfresque.ui.animate.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Refresh
@@ -14,15 +13,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.davidfz.animfresque.data.AnimationPhase
-import com.davidfz.animfresque.data.AnimationPhaseState
 import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 import androidx.compose.ui.graphics.*
+import com.davidfz.animfresque.ui.animate.AnimationPhaseState
+import com.davidfz.animfresque.ui.animate.CountDownTimer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -32,50 +33,52 @@ fun AnimationPhaseItem(
     phaseState: AnimationPhaseState,
     scope: CoroutineScope
 ) {
-    val backgroundColor = if (phaseState.isTimerZero) FresqueClimatColors.Error else Color.Unspecified
+    val isTimerZero by phaseState.timer.isTimerZero.collectAsState()
+    val isTimerRunning by phaseState.timer.isRunning.collectAsState()
+    val elapsedTimeFormatted by phaseState.timer.elapsedTimeFormatted.collectAsState()
+    val remainingTimeFormatted by phaseState.timer.remainingTimeFormatted.collectAsState()
+
     Card(
-        modifier = Modifier
-            .padding(8.dp),
+        modifier = Modifier.padding(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = backgroundColor)
+        colors = CardDefaults.cardColors(
+            containerColor = if (isTimerZero) FresqueClimatColors.Error else Color.Unspecified
+        )
     ) {
         Row(
             modifier = Modifier.padding(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Filled.DragHandle,
-                contentDescription = "Déplacer",
-                modifier = Modifier.padding(end = 8.dp)
-            )
             Text(
-                text = phaseState.phase.name,
+                text = phaseState.name,
                 fontSize = 26.sp,
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.weight(1f)
             )
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    IconButton(onClick = { phaseState.resetTimer() }) {
-                        Icon(
-                            imageVector = Icons.Default.Refresh,
-                            contentDescription = "Réinitialiser",
-                            tint = FresqueClimatColors.Primary,
-                            modifier = Modifier.size(30.dp)
-                        )
+                    if (phaseState.timer.isStarted()) {
+                        IconButton(onClick = { phaseState.timer.reset() }) {
+                            Icon(
+                                imageVector = Icons.Default.Refresh,
+                                contentDescription = "Réinitialiser",
+                                tint = FresqueClimatColors.Primary,
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
                     }
-                    if (phaseState.isTimerZero) {
+                    if (isTimerZero) {
                         Spacer(modifier = Modifier.size(30.dp)) // Add spacer when play/pause is hidden
                     } else {
                         IconButton(onClick = {
-                            if (phaseState.isPaused)
-                                phaseState.startTimer(scope)
+                            if (isTimerRunning)
+                                phaseState.timer.pause()
                             else
-                                phaseState.pauseTimer()
+                                phaseState.timer.start(scope)
                         }) {
                             Icon(
-                                imageVector = if (phaseState.isPaused) Icons.Filled.PlayArrow else Icons.Filled.Pause,
-                                contentDescription = if (phaseState.isPaused) "Start" else "Pause",
+                                imageVector = if (isTimerRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                                contentDescription = if (isTimerRunning) "Pause" else "Start",
                                 tint = FresqueClimatColors.Primary,
                                 modifier = Modifier.size(30.dp)
                             )
@@ -85,14 +88,15 @@ fun AnimationPhaseItem(
             }
             Spacer(modifier = Modifier.width(4.dp))
             Text(
-                text = if (phaseState.isTimerZero) phaseState.formatElapsedTime() else phaseState.formatDuration(),
+                text = if (isTimerZero) elapsedTimeFormatted else remainingTimeFormatted,
                 modifier = Modifier.clickable { phaseState.showTimePicker = true },
                 fontSize = 30.sp
             )
         }
     }
 
-    if (phaseState.showTimePicker) {
+    // time picker should not be clickable if timer is still running
+    if (phaseState.showTimePicker && !isTimerRunning) {
         TimePickerDialog(
             onDismissRequest = { phaseState.showTimePicker = false },
             onTimeChange = { minutes, seconds ->
@@ -110,12 +114,8 @@ fun AnimationPhaseItem(
 fun AnimationPhaseItemPreview() {
     AnimationPhaseItem(
         AnimationPhaseState(
-            phase = AnimationPhase(
-                name = "Intro",
-                duration = 15
-            ),
-            onTimeFinished = {},
-            onTimerZero = {}
+            name = "Intro",
+            timer = CountDownTimer(initialDuration = 15)
         ),
         CoroutineScope(Dispatchers.Default)
     )
