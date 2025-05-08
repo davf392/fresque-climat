@@ -8,10 +8,8 @@ import androidx.compose.runtime.setValue
 
 const val TAG = "AnimationPhaseState"
 
-class AnimationPhaseState(
-    val name: String = "",
-    val timer: CountDownTimer
-) {
+class AnimationPhaseState(val name: String = "", val timer: CountDownTimer) {
+
     var editedDuration by mutableIntStateOf(timer.initialDuration)
     var showTimePicker by mutableStateOf(false)
 

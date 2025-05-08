@@ -58,7 +58,10 @@ fun AnimationPhaseItem(
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (phaseState.timer.isStarted()) {
-                        IconButton(onClick = { phaseState.timer.reset() }) {
+                        IconButton(onClick = {
+                            phaseState.timer.reset()
+                            phaseState.showTimePicker = false
+                        }) {
                             Icon(
                                 imageVector = Icons.Default.Refresh,
                                 contentDescription = "Réinitialiser",

@@ -1,5 +1,6 @@
 package com.davidfz.animfresque.ui.animate
 
+import android.os.CountDownTimer
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -27,8 +28,8 @@ class CountDownTimer(
 ) {
     private var remainingTime = initialDuration
     private var elapsedTime = 0
-    private var timerJob: Job? = null
     private var elapsedJob: Job? = null
+    private var androidTimer: CountDownTimer? = null
 
     private val _isRunning = MutableStateFlow(false)
     val isRunning: StateFlow<Boolean> = _isRunning.asStateFlow()
@@ -65,27 +66,7 @@ class CountDownTimer(
         Log.d(TAG, "start() - isRunning = ${_isRunning.value}")
         if (_isRunning.value) return
         _isRunning.update { true }
-
-        timerJob = scope.launch {
-            while (remainingTime > 0) {
-                delay(1000)
-                remainingTime -= 1
-                updateFormattedTime(remainingTime = remainingTime)
-                Log.d(TAG, "1 sec elapsed (remaining: $remainingTime)")
-            }
-            // wait 1 sec because timer has currently 999ms remaining duration
-            delay(1000)
-
-            _isTimerZero.update { true }
-            onTimeFinished()
-            elapsedJob = scope.launch {
-                while (_isTimerZero.value) {
-                    delay(1000)
-                    elapsedTime += 1
-                    updateFormattedTime(elapsedTime = elapsedTime)
-                }
-            }
-        }
+        androidTimer = createCountDownTimer(scope).also { it.start() }
     }
 
     /**
@@ -94,8 +75,8 @@ class CountDownTimer(
     fun pause() {
         Log.d(TAG, "pause()")
         if (_isRunning.value) {
-            _isRunning.value = false
-            timerJob?.cancel()
+            _isRunning.update { false }
+            androidTimer?.cancel()
             elapsedJob?.cancel()
             _isTimerZero.update { false }
         }
@@ -106,7 +87,27 @@ class CountDownTimer(
      *
      * @return `true` if the timer is running and remaining time is different from the initial duration, `false` otherwise.
      */
-    fun isStarted() = _isRunning.value && remainingTime != initialDuration
+    fun isStarted() = _isRunning.value && (remainingTime != initialDuration)
+
+    private fun createCountDownTimer(scope: CoroutineScope) =
+        object : CountDownTimer(remainingTime * 1000L, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                remainingTime = (millisUntilFinished / 1000).toInt()
+                updateFormattedTime(remainingTime = remainingTime)
+            }
+
+            override fun onFinish() {
+                _isTimerZero.update { true }
+                onTimeFinished()
+                elapsedJob = scope.launch {
+                    while (_isTimerZero.value) {
+                        if (elapsedTime != 0) delay(1000)
+                        elapsedTime += 1
+                        updateFormattedTime(elapsedTime = elapsedTime)
+                    }
+                }
+            }
+        }
 
     private fun updateFormattedTime(remainingTime: Int = initialDuration, elapsedTime: Int = 0) {
         _remainingTimeFormatted.update { formatTime(remainingTime, TIME_FORMAT) }
