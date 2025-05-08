@@ -19,12 +19,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.davidfz.animfresque.ui.explore.ExploreScreen
 import com.davidfz.animfresque.ui.animate.AnimateScreen
+import com.davidfz.animfresque.ui.animate.AnimateViewModel
 import com.davidfz.animfresque.ui.community.CommunityScreen
 import com.davidfz.animfresque.ui.create.CreateScreen
 import com.davidfz.animfresque.ui.navigation.BottomNavItem
@@ -59,6 +61,8 @@ fun DefaultPreview() { FreskTheme { FreskApp() } }
 @Composable
 fun MainScreen() {
     val freskNavController = rememberFreskNavController()
+    val animateViewModel: AnimateViewModel = viewModel()
+
     Scaffold(
         bottomBar = { BottomNavigationBar(freskNavController.navController) }
     ) { innerPadding ->
@@ -70,7 +74,7 @@ fun MainScreen() {
             composable(Routes.HOME) { CommunityScreen() }
             composable(Routes.EXPLORE) { ExploreScreen() }
             composable(Routes.CREATE) { CreateScreen() }
-            composable(Routes.ANIMATE) { AnimateScreen() }
+            composable(Routes.ANIMATE) { AnimateScreen(viewModel = animateViewModel) }
             composable(Routes.PROFILE) { ProfileScreen(freskNavController.navController) }
             composable(Routes.EDIT_PROFILE) { EditProfileScreen(freskNavController.navController) }
         }

@@ -5,21 +5,38 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import java.util.concurrent.TimeUnit
 
-class AnimateViewModel: ViewModel() {
+const val REMAINING_TIME_TOTAL_FORMAT = "%02d:%02d:%02d"
 
-    private val _animationPhases = MutableStateFlow(initPhasesList())
-    val animationPhases: StateFlow<List<AnimationPhaseState>> = _animationPhases.asStateFlow()
+open class AnimateViewModel: ViewModel() {
 
-    private val _totalTime = MutableStateFlow(0)
-    val totalTime: StateFlow<Int> = _totalTime.asStateFlow()
+    private val _uiState = MutableStateFlow(AnimationUiState())
+    open val uiState: StateFlow<AnimationUiState> = _uiState.asStateFlow()
 
     init {
-        computeTotalTime()
+        resetAnimation()
     }
 
-    private fun computeTotalTime() {
-        _totalTime.value = _animationPhases.value.sumOf { it.editedDuration } / 60
+    private fun resetAnimation() {
+        val phasesList = initPhasesList()
+        val totalTime = phasesList.sumOf { it.timer.initialDuration }
+        _uiState.update {
+            AnimationUiState(
+                animationPhases = phasesList,
+                totalTimeInSec = totalTime,
+                totalTimeFormatted = getFormattedRemainingTime(totalTime)
+            )
+        }
+    }
+
+    private fun getFormattedRemainingTime(totalTime: Int): String {
+        return REMAINING_TIME_TOTAL_FORMAT.format(
+            TimeUnit.SECONDS.toHours(totalTime.toLong()),
+            TimeUnit.SECONDS.toMinutes(totalTime.toLong()) % 60,
+            TimeUnit.SECONDS.toSeconds(totalTime.toLong()) % 60
+        )
     }
 
     private fun initPhasesList(): List<AnimationPhaseState> {

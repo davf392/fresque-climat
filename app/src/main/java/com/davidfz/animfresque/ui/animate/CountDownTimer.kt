@@ -26,7 +26,6 @@ class CountDownTimer(
     var initialDuration: Int = 0,
     val onTimeFinished: () -> Unit = {}
 ) {
-    private var remainingTime = initialDuration
     private var elapsedTime = 0
     private var elapsedJob: Job? = null
     private var androidTimer: CountDownTimer? = null
@@ -37,7 +36,10 @@ class CountDownTimer(
     private val _isTimerZero = MutableStateFlow(false)
     val isTimerZero: StateFlow<Boolean> = _isTimerZero.asStateFlow()
 
-    private val _remainingTimeFormatted = MutableStateFlow(formatTime(remainingTime, TIME_FORMAT))
+    private val _remainingTime = MutableStateFlow(initialDuration)
+    val remainingTime: StateFlow<Int> = _remainingTime.asStateFlow()
+
+    private val _remainingTimeFormatted = MutableStateFlow(formatTime(_remainingTime.value, TIME_FORMAT))
     val remainingTimeFormatted: StateFlow<String> = _remainingTimeFormatted.asStateFlow()
 
     private val _elapsedTimeFormatted = MutableStateFlow("")
@@ -49,7 +51,7 @@ class CountDownTimer(
     fun reset() {
         Log.d(TAG, "reset()")
         pause()
-        remainingTime = initialDuration
+        _remainingTime.update { initialDuration }
         elapsedTime = 0
         updateFormattedTime()
     }
@@ -87,13 +89,13 @@ class CountDownTimer(
      *
      * @return `true` if the timer is running and remaining time is different from the initial duration, `false` otherwise.
      */
-    fun isStarted() = _isRunning.value && (remainingTime != initialDuration)
+    fun isStarted() = _isRunning.value && (_remainingTime.value != initialDuration)
 
     private fun createCountDownTimer(scope: CoroutineScope) =
-        object : CountDownTimer(remainingTime * 1000L, 1000) {
+        object : CountDownTimer(_remainingTime.value * 1000L, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                remainingTime = (millisUntilFinished / 1000).toInt()
-                updateFormattedTime(remainingTime = remainingTime)
+                _remainingTime.update { (millisUntilFinished / 1000).toInt() }
+                updateFormattedTime(remainingTime = _remainingTime.value)
             }
 
             override fun onFinish() {

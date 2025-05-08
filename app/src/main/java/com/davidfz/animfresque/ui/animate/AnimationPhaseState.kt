@@ -13,6 +13,14 @@ class AnimationPhaseState(val name: String = "", val timer: CountDownTimer) {
     var editedDuration by mutableIntStateOf(timer.initialDuration)
     var showTimePicker by mutableStateOf(false)
 
+    init {
+        initDuration(timer.initialDuration)
+    }
+
+    private fun initDuration(totalSeconds: Int) {
+        setNewDuration(totalSeconds / 60, totalSeconds % 60)
+    }
+
     fun setNewDuration(minutes: Int, seconds: Int) {
         Log.d(TAG, "setNewDuration($minutes, $seconds)")
         editedDuration = (minutes * 60) + seconds
