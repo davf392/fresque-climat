@@ -1,8 +1,11 @@
 package com.davidfz.animfresque.ui.animate
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -38,9 +41,21 @@ fun AnimateScreen(
             remainingAnimationTime = state.totalTimeInSec,
             remainingAnimationFormattedTime = state.totalTimeFormatted
         )
+        Spacer(modifier = Modifier.padding(vertical = 4.dp))
         LazyColumn {
             items(state.animationPhases.size) { index ->
-                AnimationPhaseItem(state.animationPhases[index], scope)
+                AnimationPhaseItem(
+                    phaseState = state.animationPhases[index],
+                    scope = scope,
+                    onDurationChange = { minutes, seconds ->
+                        Log.d("AnimateScreen", "setPhaseDuration")
+                        viewModel.setPhaseDuration(index, minutes, seconds)
+                   },
+                    onShowTimePicker = { show ->
+                        Log.d("AnimateScreen", "setShowTimePicker")
+                        viewModel.setShowTimePicker(index, show)
+                    }
+                )
             }
         }
     }
@@ -65,18 +80,18 @@ class AnimateScreenPreviewProvider : PreviewParameterProvider<AnimationUiState> 
     override val values = sequenceOf(
         AnimationUiState(
             animationPhases = mutableStateListOf(
-                AnimationPhaseState("Intro", CountDownTimer(15 * 60)),
-                AnimationPhaseState("Lot 1", CountDownTimer(10 * 60)),
-                AnimationPhaseState("Lot 2", CountDownTimer(15 * 60)),
-                AnimationPhaseState("Lot 3", CountDownTimer(20 * 60)),
-                AnimationPhaseState("Lot 4", CountDownTimer(15 * 60)),
-                AnimationPhaseState("Lot 5", CountDownTimer(10 * 60)),
-                AnimationPhaseState("Créativité", CountDownTimer(10 * 60)),
-                AnimationPhaseState("Synthèse", CountDownTimer(5 * 60)),
-                AnimationPhaseState("Quiz", CountDownTimer(15 * 60)),
-                AnimationPhaseState("Émotions", CountDownTimer(15 * 60)),
-                AnimationPhaseState("Débats", CountDownTimer(45 * 60)),
-                AnimationPhaseState("Conclusion", CountDownTimer(10 * 60))
+                AnimationPhaseUiState("Intro", CountDownTimer(15 * 60)),
+                AnimationPhaseUiState("Lot 1", CountDownTimer(10 * 60)),
+                AnimationPhaseUiState("Lot 2", CountDownTimer(15 * 60)),
+                AnimationPhaseUiState("Lot 3", CountDownTimer(20 * 60)),
+                AnimationPhaseUiState("Lot 4", CountDownTimer(15 * 60)),
+                AnimationPhaseUiState("Lot 5", CountDownTimer(10 * 60)),
+                AnimationPhaseUiState("Créativité", CountDownTimer(10 * 60)),
+                AnimationPhaseUiState("Synthèse", CountDownTimer(5 * 60)),
+                AnimationPhaseUiState("Quiz", CountDownTimer(15 * 60)),
+                AnimationPhaseUiState("Émotions", CountDownTimer(15 * 60)),
+                AnimationPhaseUiState("Débats", CountDownTimer(45 * 60)),
+                AnimationPhaseUiState("Conclusion", CountDownTimer(10 * 60))
             ),
             totalTimeInSec = 10800,
             totalTimeFormatted = "03:05:00"

@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit
 
 const val TIME_FORMAT = "%02d:%02d"
 
+private const val TAG = "CountDownTimer"
+
 /**
  * A versatile countdown timer that supports start, pause, reset, and provides
  * observable states for remaining time, elapsed time and running status.

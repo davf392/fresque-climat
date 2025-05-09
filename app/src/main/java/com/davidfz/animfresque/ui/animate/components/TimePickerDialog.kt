@@ -35,6 +35,7 @@ fun TimePickerDialog(
         text = {
             Row(horizontalArrangement = Arrangement.Center) {
                 NumberPicker(
+                    modifier = Modifier,
                     value = selectedMinute,
                     onValueChange = { selectedMinute = it },
                     range = 0..59,
@@ -42,6 +43,7 @@ fun TimePickerDialog(
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 NumberPicker(
+                    modifier = Modifier,
                     value = selectedSecond,
                     onValueChange = { selectedSecond = it },
                     range = 0..59,
@@ -50,9 +52,7 @@ fun TimePickerDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = {
-                onTimeChange(selectedMinute, selectedSecond)
-            }) {
+            TextButton(onClick = { onTimeChange(selectedMinute, selectedSecond) }) {
                 Text("OK")
             }
         },
@@ -64,7 +64,7 @@ fun TimePickerDialog(
     )
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun TimePickerDialogPreview() {
     var showDialog by remember { mutableStateOf(true) }

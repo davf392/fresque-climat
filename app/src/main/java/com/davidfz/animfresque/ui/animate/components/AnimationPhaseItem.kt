@@ -1,5 +1,6 @@
 package com.davidfz.animfresque.ui.animate.components
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -22,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 import androidx.compose.ui.graphics.*
-import com.davidfz.animfresque.ui.animate.AnimationPhaseState
+import com.davidfz.animfresque.ui.animate.AnimationPhaseUiState
 import com.davidfz.animfresque.ui.animate.CountDownTimer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,8 +31,10 @@ import kotlinx.coroutines.Dispatchers
 
 @Composable
 fun AnimationPhaseItem(
-    phaseState: AnimationPhaseState,
-    scope: CoroutineScope
+    phaseState: AnimationPhaseUiState,
+    scope: CoroutineScope,
+    onDurationChange: (Int, Int) -> Unit = { _, _ -> },
+    onShowTimePicker: (Boolean) -> Unit = {}
 ) {
     val isTimerZero by phaseState.timer.isTimerZero.collectAsState()
     val isTimerRunning by phaseState.timer.isRunning.collectAsState()
@@ -88,7 +91,7 @@ fun AnimationPhaseItem(
             // timer displayed remaining or elapsed time
             Text(
                 text = if (isTimerZero) elapsedTimeFormatted else remainingTimeFormatted,
-                modifier = Modifier.clickable { phaseState.showTimePicker = true },
+                modifier = Modifier.clickable { onShowTimePicker(true) },
                 fontSize = 30.sp
             )
         }
@@ -97,8 +100,8 @@ fun AnimationPhaseItem(
     // time picker should not be clickable if timer is still running
     if (phaseState.showTimePicker && !isTimerRunning) {
         TimePickerDialog(
-            onDismissRequest = { phaseState.showTimePicker = false },
-            onTimeChange = { minutes, seconds -> phaseState.setNewDuration(minutes, seconds) },
+            onDismissRequest = { onShowTimePicker(false) },
+            onTimeChange = onDurationChange,
             initialMinute = phaseState.editedDuration / 60,
             initialSecond = phaseState.editedDuration % 60
         )
@@ -106,14 +109,14 @@ fun AnimationPhaseItem(
 }
 
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun AnimationPhaseItemPreview() {
     AnimationPhaseItem(
-        AnimationPhaseState(
+        AnimationPhaseUiState(
             name = "Intro",
             timer = CountDownTimer(initialDuration = 15)
         ),
-        CoroutineScope(Dispatchers.Default)
+        CoroutineScope(Dispatchers.Default),
     )
 }
