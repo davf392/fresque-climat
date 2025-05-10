@@ -1,48 +1,55 @@
 package com.davidfz.animfresque.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.davidfz.animfresque.ui.explore.ExploreScreen
-import com.davidfz.animfresque.ui.animate.screen.AnimateScreen
+import com.davidfz.animfresque.ui.explore.screens.ExploreScreen
+import com.davidfz.animfresque.ui.animate.screens.AnimateScreen
 import com.davidfz.animfresque.ui.animate.viewmodel.AnimateViewModel
 import com.davidfz.animfresque.ui.community.CommunityScreen
-import com.davidfz.animfresque.ui.create.CreateScreen
 import com.davidfz.animfresque.ui.navigation.BottomNavItem
 import com.davidfz.animfresque.ui.navigation.Routes
 import com.davidfz.animfresque.ui.navigation.rememberFreskNavController
-import com.davidfz.animfresque.ui.profile.EditProfileScreen
-import com.davidfz.animfresque.ui.profile.ProfileScreen
+import com.davidfz.animfresque.ui.profile.screens.EditProfileScreen
+import com.davidfz.animfresque.ui.profile.screens.LoginScreen
+import com.davidfz.animfresque.ui.profile.screens.ProfileScreen
 import com.davidfz.animfresque.ui.theme.FreskTheme
 import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 
 
 @Composable
-fun FreskApp() {
+fun FreskApp(
+    modifier: Modifier = Modifier
+) {
     FreskTheme {
         Surface(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             MainScreen()
@@ -50,33 +57,64 @@ fun FreskApp() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
-fun DefaultPreview() { FreskTheme { FreskApp() } }
+fun DefaultPreview() { FreskTheme { FreskApp(Modifier.background(Color.White)) } }
 
-//@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-//@Composable
-//fun DefaultPreviewNight() { FreskTheme { FreskApp() } }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
-    val freskNavController = rememberFreskNavController()
+    val navController = rememberFreskNavController()
+    val navBackStackEntry by navController.navController.currentBackStackEntryAsState(    )
+    val currentRoute = navBackStackEntry?.destination?.route
     val animateViewModel: AnimateViewModel = viewModel()
 
     Scaffold(
-        bottomBar = { BottomNavigationBar(freskNavController.navController) }
+        topBar = {
+            TopAppBar(
+                title = { Text("Fresque du Climat",) },
+                navigationIcon = {
+                    if (currentRoute == Routes.EDIT_PROFILE) {
+                        IconButton(onClick = { navController.navController.popBackStack() }) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Localized description"
+                            )
+                        }
+                    }
+                },
+            )
+        },
+        bottomBar = { BottomNavigationBar(navController.navController) }
     ) { innerPadding ->
         NavHost(
-            freskNavController.navController,
+            navController.navController,
             startDestination = Routes.HOME,
             Modifier.padding(innerPadding)
         ) {
             composable(Routes.HOME) { CommunityScreen() }
             composable(Routes.EXPLORE) { ExploreScreen() }
-            composable(Routes.CREATE) { CreateScreen() }
-            composable(Routes.ANIMATE) { AnimateScreen(viewModel = animateViewModel) }
-            composable(Routes.PROFILE) { ProfileScreen(freskNavController.navController) }
-            composable(Routes.EDIT_PROFILE) { EditProfileScreen(freskNavController.navController) }
+            composable(Routes.ANIMATE) {
+                AnimateScreen(
+                    viewModel = animateViewModel
+                )
+            }
+            composable(Routes.LOGIN) {
+                LoginScreen(
+                    navController = navController.navController
+                )
+            }
+            composable(Routes.PROFILE) {
+                ProfileScreen(
+                    navController = navController.navController
+                )
+            }
+            composable(Routes.EDIT_PROFILE) {
+                EditProfileScreen(
+                    navController = navController.navController
+                )
+            }
         }
     }
 }
@@ -86,9 +124,8 @@ fun BottomNavigationBar(navController: NavController) {
     val navItems = listOf(
         BottomNavItem("Home", Routes.HOME, Icons.Default.Home),
         BottomNavItem("Explore", Routes.EXPLORE, Icons.Default.Search),
-        BottomNavItem("Create", Routes.CREATE, Icons.Default.Add),
         BottomNavItem("Animate", Routes.ANIMATE, Icons.Default.Face),
-        BottomNavItem("Profile", Routes.PROFILE, Icons.Default.AccountCircle)
+        BottomNavItem("Profile", Routes.LOGIN, Icons.Default.AccountCircle)
     )
 
     NavigationBar {

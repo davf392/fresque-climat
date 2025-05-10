@@ -1,4 +1,4 @@
-package com.davidfz.animfresque.ui.animate.screen
+package com.davidfz.animfresque.ui.animate.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

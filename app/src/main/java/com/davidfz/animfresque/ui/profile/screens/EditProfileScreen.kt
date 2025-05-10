@@ -1,10 +1,11 @@
-package com.davidfz.animfresque.ui.profile
+package com.davidfz.animfresque.ui.profile.screens
 
 import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,7 +37,10 @@ import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImage
 
 @Composable
-fun EditProfileScreen(navController: NavHostController) {
+fun EditProfileScreen(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+) {
     BackHandler { navController.popBackStack() }
     var text by rememberSaveable { mutableStateOf("Text") }
 
@@ -126,8 +131,11 @@ fun EditableProfilePicture(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun EditProfileScreenPreview() {
-    EditProfileScreen(navController = rememberNavController())
+    EditProfileScreen(
+        modifier = Modifier.background(Color.White),
+        navController = rememberNavController()
+    )
 }

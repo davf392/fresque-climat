@@ -2,6 +2,8 @@
     <string name="app_name">AnimFresque</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <string name="session_nb_slots_participants">%d places·s restante·s</string>
+    <string name="session_nb_slots_facilitators">%d anima·teur·trice·s restant·e·s</string>
     <string name="start_animation">Démarrer l\'animation</string>
     <string name="stop_animation">Arrêter l\'animation</string>
     <string name="play_animation">Lecture</string>

@@ -46,12 +46,12 @@ fun NumberPicker(
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 fun NumberPickerMinutesPreview() {
     var value by remember { mutableIntStateOf(15) }
     NumberPicker(
-        modifier = Modifier,
+        modifier = Modifier.background(White),
         value = value,
         onValueChange = { value = it },
         range = 0..59,
