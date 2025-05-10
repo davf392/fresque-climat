@@ -1,12 +1,13 @@
-package com.davidfz.animfresque.ui.animate
+package com.davidfz.animfresque.ui.animate.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationPhaseUiState
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationPlayState
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationUiState
+import com.davidfz.animfresque.ui.animate.CountDownTimer
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+
 
 private const val TAG = "AnimateViewModel"
 

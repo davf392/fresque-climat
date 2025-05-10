@@ -1,4 +1,6 @@
-package com.davidfz.animfresque.ui.animate
+package com.davidfz.animfresque.ui.animate.ui_state
+
+import com.davidfz.animfresque.ui.animate.CountDownTimer
 
 data class AnimationPhaseUiState(
     val name: String = "",

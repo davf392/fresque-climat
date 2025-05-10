@@ -25,8 +25,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.davidfz.animfresque.ui.explore.ExploreScreen
-import com.davidfz.animfresque.ui.animate.AnimateScreen
-import com.davidfz.animfresque.ui.animate.AnimateViewModel
+import com.davidfz.animfresque.ui.animate.screen.AnimateScreen
+import com.davidfz.animfresque.ui.animate.viewmodel.AnimateViewModel
 import com.davidfz.animfresque.ui.community.CommunityScreen
 import com.davidfz.animfresque.ui.create.CreateScreen
 import com.davidfz.animfresque.ui.navigation.BottomNavItem

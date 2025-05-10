@@ -31,7 +31,7 @@ import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.stringResource
 import com.davidfz.animfresque.R
-import com.davidfz.animfresque.ui.animate.AnimationPhaseUiState
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationPhaseUiState
 import com.davidfz.animfresque.ui.animate.CountDownTimer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

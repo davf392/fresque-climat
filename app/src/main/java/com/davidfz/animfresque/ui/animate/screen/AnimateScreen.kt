@@ -1,4 +1,4 @@
-package com.davidfz.animfresque.ui.animate
+package com.davidfz.animfresque.ui.animate.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -21,6 +21,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.davidfz.animfresque.ui.animate.viewmodel.AnimateViewModel
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationPhaseUiState
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationPlayState
+import com.davidfz.animfresque.ui.animate.ui_state.AnimationUiState
+import com.davidfz.animfresque.ui.animate.CountDownTimer
 import com.davidfz.animfresque.ui.animate.components.AnimationControlButton
 import com.davidfz.animfresque.ui.animate.components.AnimationPhaseItem
 import com.davidfz.animfresque.ui.animate.components.AnimationTotalProgressBar

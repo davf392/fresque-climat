@@ -1,4 +1,4 @@
-package com.davidfz.animfresque.ui.animate
+package com.davidfz.animfresque.ui.animate.ui_state
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
