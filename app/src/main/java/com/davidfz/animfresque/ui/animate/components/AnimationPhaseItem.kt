@@ -1,6 +1,11 @@
 package com.davidfz.animfresque.ui.animate.components
 
-import android.util.Log
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -18,6 +23,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,6 +37,8 @@ import kotlinx.coroutines.Dispatchers
 
 @Composable
 fun AnimationPhaseItem(
+    isActive: Boolean = false,
+    isAnimationRunning: Boolean = false,
     phaseState: AnimationPhaseUiState,
     scope: CoroutineScope,
     onDurationChange: (Int, Int) -> Unit = { _, _ -> },
@@ -40,65 +48,78 @@ fun AnimationPhaseItem(
     val isTimerRunning by phaseState.timer.isRunning.collectAsState()
     val elapsedTimeFormatted by phaseState.timer.elapsedTimeFormatted.collectAsState()
     val remainingTimeFormatted by phaseState.timer.remainingTimeFormatted.collectAsState()
-    val backgroundColor = if (isTimerZero) FresqueClimatColors.Error else Color.Unspecified
+    val timerColor = if (isTimerZero) FresqueClimatColors.Error else Color.Unspecified
+    val backgroundColor = if (isActive) FresqueClimatColors.SecondaryVariant else Color.Unspecified
+
+    val alpha by rememberInfiniteTransition().animateFloat(
+        initialValue = 1f,
+        targetValue = 0f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 500, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
+    val modifierTextTimer = if (!isTimerRunning && isActive) Modifier.alpha(alpha) else Modifier
+
 
     Card(
-        modifier = Modifier.padding(8.dp),
+        modifier = Modifier.padding(8.dp).height(55.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(containerColor = backgroundColor)
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 8.dp),
+            modifier = Modifier.height(55.dp).padding(horizontal = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // timer name
             Text(
-                text = phaseState.name,
+                text = phaseState.name, // timer name
                 fontSize = 26.sp,
                 style = MaterialTheme.typography.headlineSmall,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).align(Alignment.CenterVertically)
             )
-            // timer reset button
-            if (phaseState.timer.isStarted()) {
-                IconButton(onClick = {
-                    phaseState.timer.reset()
-                    phaseState.showTimePicker = false
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.Refresh,
-                        contentDescription = "Réinitialiser",
-                        tint = FresqueClimatColors.Primary,
-                        modifier = Modifier.size(30.dp)
-                    )
+            if (!phaseState.isAnimationStarted) {
+                if (phaseState.timer.isStarted()) {
+                    IconButton(onClick = {
+                        phaseState.timer.reset()
+                        phaseState.showTimePicker = false
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Refresh, // timer reset button
+                            contentDescription = "Réinitialiser",
+                            tint = FresqueClimatColors.Primary,
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
                 }
-            }
-            // timer play or pause button
-            if (isTimerZero) {
-                Spacer(modifier = Modifier.size(30.dp)) // Add spacer when play/pause is hidden
-            } else {
-                IconButton(
-                    onClick = { phaseState.timer.let { if (isTimerRunning) it.pause() else it.start(scope) } }
-                ) {
-                    Icon(
-                        imageVector = if (isTimerRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                        contentDescription = if (isTimerRunning) "Pause" else "Start",
-                        tint = FresqueClimatColors.Primary,
-                        modifier = Modifier.size(30.dp)
-                    )
+                if (isTimerZero) {
+                    Spacer(modifier = Modifier.size(30.dp)) // Add spacer when play/pause is hidden
+                } else {
+                    IconButton(
+                        onClick = { phaseState.timer.let { if (isTimerRunning) it.pause() else it.start(scope) } }
+                    ) {
+                        // timer play or pause button
+                        Icon(
+                            imageVector = if (isTimerRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow,
+                            contentDescription = if (isTimerRunning) "Pause" else "Start",
+                            tint = FresqueClimatColors.Primary,
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.width(4.dp))
             // timer displayed remaining or elapsed time
             Text(
                 text = if (isTimerZero) elapsedTimeFormatted else remainingTimeFormatted,
-                modifier = Modifier.clickable { onShowTimePicker(true) },
-                fontSize = 30.sp
+                modifier = modifierTextTimer.align(Alignment.CenterVertically).clickable { onShowTimePicker(true) },
+                fontSize = 30.sp,
+                color = timerColor
             )
         }
     }
 
     // time picker should not be clickable if timer is still running
-    if (phaseState.showTimePicker && !isTimerRunning) {
+    if (phaseState.showTimePicker && !isTimerRunning && !isAnimationRunning) {
         TimePickerDialog(
             onDismissRequest = { onShowTimePicker(false) },
             onTimeChange = onDurationChange,
@@ -113,9 +134,12 @@ fun AnimationPhaseItem(
 @Composable
 fun AnimationPhaseItemPreview() {
     AnimationPhaseItem(
+        isActive = false,
+        isAnimationRunning = false,
         AnimationPhaseUiState(
             name = "Intro",
-            timer = CountDownTimer(initialDuration = 15)
+            timer = CountDownTimer(initialDuration = 15),
+            isAnimationStarted = false
         ),
         CoroutineScope(Dispatchers.Default),
     )

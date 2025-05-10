@@ -1,12 +1,13 @@
 package com.davidfz.animfresque.ui.animate
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,47 +20,67 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.davidfz.animfresque.ui.animate.components.AnimationControlButton
 import com.davidfz.animfresque.ui.animate.components.AnimationPhaseItem
 import com.davidfz.animfresque.ui.animate.components.AnimationTotalProgressBar
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 
 
 @Composable
 fun AnimateScreen(
     modifier: Modifier = Modifier,
-    viewModel: AnimateViewModel = viewModel(),
-    scope: CoroutineScope = rememberCoroutineScope()
+    viewModel: AnimateViewModel = viewModel()
 ) {
     val state by viewModel.uiState.collectAsState()
+    val scope = rememberCoroutineScope()
 
-    Column(
-        modifier = modifier.padding(8.dp),
-    ) {
-        AnimationTotalProgressBar(
-            totalAnimationTime = state.totalTimeInSec,
-            remainingAnimationTime = state.totalTimeInSec,
-            remainingAnimationFormattedTime = state.totalTimeFormatted
-        )
-        Spacer(modifier = Modifier.padding(vertical = 4.dp))
-        LazyColumn {
+    Column(modifier = modifier.padding(8.dp)) {
+        LazyColumn(modifier = Modifier.weight(1f)) {
             items(state.animationPhases.size) { index ->
                 AnimationPhaseItem(
+                    isActive = state.currentlyActiveTimer == index,
+                    isAnimationRunning = state.animationPlayState.isPlaying,
                     phaseState = state.animationPhases[index],
                     scope = scope,
-                    onDurationChange = { minutes, seconds ->
-                        Log.d("AnimateScreen", "setPhaseDuration")
-                        viewModel.setPhaseDuration(index, minutes, seconds)
-                   },
-                    onShowTimePicker = { show ->
-                        Log.d("AnimateScreen", "setShowTimePicker")
-                        viewModel.setShowTimePicker(index, show)
-                    }
+                    onDurationChange = { min, sec -> viewModel.setPhaseDuration(index, min, sec) },
+                    onShowTimePicker = { show -> viewModel.setShowTimePicker(index, show) }
+                )
+            }
+        }
+        AnimationTotalProgressBar(
+            modifier = Modifier.padding(top = 10.dp),
+            totalAnimationTime = state.totalDurationInSec,
+            remainingAnimationTime = state.totalRemainingTimeInSec,
+            remainingAnimationFormattedTime = state.totalRemainingTimeFormatted,
+            totalTimeFormatted = state.totalTimeFormatted,
+            plannedEndTimeFormatted = state.plannedEndTimeFormatted,
+            animationIsStarted = state.animationPlayState.isPlaying
+        )
+        Row {
+            AnimationControlButton(
+                onClick = { viewModel.startStopAnimation() },
+                modifier = Modifier.weight(1f).padding(start = 4.dp, top = 4.dp),
+                icon = state.animationPlayState.iconAnimation,
+                text = state.animationPlayState.iconButtonText
+            )
+
+            if (state.animationPlayState.isPlaying) {
+                AnimationControlButton(
+                    onClick = { viewModel.startPauseAnimation() },
+                    modifier = Modifier.padding(start = 4.dp, top = 4.dp).width(60.dp),
+                    icon = state.animationPlayState.iconPlayPause
+                )
+                AnimationControlButton(
+                    onClick = { viewModel.nextAnimationPhase() },
+                    modifier = Modifier.padding(start = 4.dp, top = 4.dp).width(60.dp),
+                    icon = Icons.Filled.SkipNext
                 )
             }
         }
     }
 }
+
+// --- Previews ---
 
 @Preview
 @Composable
@@ -68,7 +89,7 @@ fun AnimateScreenPreview(
 ) {
     AnimateScreen(
         modifier = Modifier.background(White),
-        FakeAnimateViewModel(uiState)
+        viewModel = FakeAnimateViewModel(uiState)
     )
 }
 
@@ -93,8 +114,12 @@ class AnimateScreenPreviewProvider : PreviewParameterProvider<AnimationUiState> 
                 AnimationPhaseUiState("Débats", CountDownTimer(45 * 60)),
                 AnimationPhaseUiState("Conclusion", CountDownTimer(10 * 60))
             ),
-            totalTimeInSec = 10800,
-            totalTimeFormatted = "03:05:00"
+            totalDurationInSec = 10800,
+            totalRemainingTimeInSec = 8000,
+            totalRemainingTimeFormatted = "02:45:44",
+            totalTimeFormatted = "03:05:00",
+            animationPlayState = AnimationPlayState.RESUMED,
+            currentlyActiveTimer = 0
         )
     )
 }
