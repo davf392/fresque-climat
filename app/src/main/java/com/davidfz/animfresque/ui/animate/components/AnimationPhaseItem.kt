@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.res.stringResource
+import com.davidfz.animfresque.R
 import com.davidfz.animfresque.ui.animate.AnimationPhaseUiState
 import com.davidfz.animfresque.ui.animate.CountDownTimer
 import kotlinx.coroutines.CoroutineScope
@@ -100,7 +102,7 @@ fun AnimationPhaseItem(
                         // timer play or pause button
                         Icon(
                             imageVector = if (isTimerRunning) Icons.Filled.Pause else Icons.Filled.PlayArrow,
-                            contentDescription = if (isTimerRunning) "Pause" else "Start",
+                            contentDescription = stringResource(if (isTimerRunning) R.string.pause_animation else R.string.play_animation),
                             tint = FresqueClimatColors.Primary,
                             modifier = Modifier.size(30.dp)
                         )

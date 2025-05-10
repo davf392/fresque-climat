@@ -17,7 +17,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.davidfz.animfresque.R
 
 @Composable
 fun NumberPicker(
@@ -53,7 +55,7 @@ fun NumberPickerMinutesPreview() {
         value = value,
         onValueChange = { value = it },
         range = 0..59,
-        label = { Text("Minutes") }
+        label = { Text(stringResource(R.string.timer_minutes)) }
     )
 }
 
@@ -67,6 +69,6 @@ fun NumberPickerSecondsPreview(
         value = value,
         onValueChange = { value = it },
         range = 0..59,
-        label = { Text("Secondes") }
+        label = { Text(stringResource(R.string.timer_seconds)) }
     )
 }

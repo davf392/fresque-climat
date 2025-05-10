@@ -1,5 +1,6 @@
 package com.davidfz.animfresque.ui.animate.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,9 +15,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.davidfz.animfresque.R
 import java.util.concurrent.TimeUnit
 
 @Composable
@@ -31,7 +34,7 @@ fun TimePickerDialog(
 
     AlertDialog(
         onDismissRequest = onDismissRequest,
-        title = { Text("Modifier la durée") },
+        title = { Text(stringResource(R.string.modify_timer_duration)) },
         text = {
             Row(horizontalArrangement = Arrangement.Center) {
                 NumberPicker(
@@ -39,7 +42,7 @@ fun TimePickerDialog(
                     value = selectedMinute,
                     onValueChange = { selectedMinute = it },
                     range = 0..59,
-                    label = { Text("Minutes", fontSize = 18.sp) }
+                    label = { Text(text = stringResource(R.string.timer_minutes), fontSize = 18.sp) }
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 NumberPicker(
@@ -47,18 +50,18 @@ fun TimePickerDialog(
                     value = selectedSecond,
                     onValueChange = { selectedSecond = it },
                     range = 0..59,
-                    label = { Text("Secondes", fontSize = 18.sp) }
+                    label = { Text(text = stringResource(R.string.timer_seconds), fontSize = 18.sp) }
                 )
             }
         },
         confirmButton = {
             TextButton(onClick = { onTimeChange(selectedMinute, selectedSecond) }) {
-                Text("OK")
+                Text(stringResource(R.string.button_ok))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismissRequest) {
-                Text("Annuler")
+                Text(stringResource(R.string.button_cancel))
             }
         }
     )
@@ -75,7 +78,7 @@ fun TimePickerDialogPreview() {
             onDismissRequest = { showDialog = false },
             onTimeChange = { minutes, seconds ->
                 // Handle duration change in preview
-                println("Selected duration: $minutes mn and $seconds sec")
+                Log.d("TimePickerDialog", "Selected duration: $minutes mn and $seconds sec")
             },
             initialMinute = TimeUnit.MILLISECONDS.toMinutes(duration).toInt(), // Example initial duration
             initialSecond = (TimeUnit.MILLISECONDS.toSeconds(duration) % 60).toInt() // Example initial duration

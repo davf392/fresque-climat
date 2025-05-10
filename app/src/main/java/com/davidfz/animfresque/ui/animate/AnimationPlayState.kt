@@ -6,14 +6,15 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.davidfz.animfresque.R
 
 enum class AnimationPlayState(
     val isPlaying: Boolean,
     val iconAnimation: ImageVector,
     val iconPlayPause: ImageVector,
-    val iconButtonText: String?
+    val iconButtonText: Int
 ) {
-    RESUMED(true, Icons.Filled.Stop, Icons.Filled.Pause, "Stop Animation"),
-    PAUSED(true, Icons.Filled.Stop, Icons.Filled.PlayArrow, "Stop Animation"),
-    STOPPED(false, Icons.Filled.PlayArrow, Icons.Filled.PlayCircle /* not used */, "Start Animation")
+    RESUMED(true, Icons.Filled.Stop, Icons.Filled.Pause, R.string.stop_animation),
+    PAUSED(true, Icons.Filled.Stop, Icons.Filled.PlayArrow, R.string.stop_animation),
+    STOPPED(false, Icons.Filled.PlayArrow, Icons.Filled.PlayCircle /* not used */, R.string.start_animation)
 }
