@@ -1,11 +1,9 @@
-# Fresque Climat Animateur
+# Fresque Climat Animateur [![Kotlin Version](https://img.shields.io/badge/kotlin-2.1.0-blue.svg)](https://kotlinlang.org) [![API](https://img.shields.io/badge/API-35%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=35) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Ce projet s'inspire du site web de la Fresque du Climat à des fins de développement et de démonstration, en utilisant des données factices.
+Ce projet d'application mobile est un prototype non officiel, inspiré du site web Fresque du Climat à des fins de développement et de démonstration avec des données factices. 
+Elle est actuellement en phase de prototypage mais vous êtes invités à la tester et à me faire un retour d'expérience.
 
-Cette application est actuellement en phase de prototypage et nous vous invitons à la tester et à nous faire part de vos retours d'expérience.
-
-Veuillez noter qu'il ne s'agit en aucun cas d'une affiliation, d'une endorsement ou d'une copie 
-officielle du site web de la Fresque du Climat : https://association.climatefresk.org/
+Veuillez noter qu'il ne s'agit en aucun cas d'une affiliation ou d'une copie officielle du site web de la [Fresque du Climat](https://association.climatefresk.org/)
 
 Toutes les marques de commerce et droits d'auteur associés au site web appartiennent à leurs propriétaires respectifs.
 
