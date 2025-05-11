@@ -3,9 +3,10 @@
 Ce projet d'application mobile est un prototype non officiel, inspiré du site web Fresque du Climat à des fins de développement et de démonstration avec des données factices. 
 Elle est actuellement en phase de prototypage mais vous êtes invités à la tester et à me faire un retour d'expérience.
 
-Veuillez noter qu'il ne s'agit en aucun cas d'une affiliation ou d'une copie officielle du site web de la [Fresque du Climat](https://association.climatefresk.org/)
-
-Toutes les marques de commerce et droits d'auteur associés au site web appartiennent à leurs propriétaires respectifs.
+> ℹ️ NOTE
+> 
+> Il ne s'agit pas d'une affiliation ou d'une copie officielle du site web de la [Fresque du Climat](https://association.climatefresk.org/).</br>
+> Toutes les marques de commerce et droits d'auteur associés au site web appartiennent à leurs propriétaires respectifs.
 
 ## 📖 Description
 
@@ -28,6 +29,14 @@ Il permet également de modifier ses informations personnelles et sa photo de pr
 
 ## 📸 Captures d'écran
 
+<img src="https://github.com/user-attachments/assets/ac4721cb-90a6-4681-a734-ddd296ce69ed5" width="200" />
+<img src="https://github.com/user-attachments/assets/6d32f43f-6870-482d-824f-ab6f37e16125" width="200" />
+<img src="https://github.com/user-attachments/assets/60f3ffd6-15bd-440d-86de-b590aef8f344" width="200" />
+<img src="https://github.com/user-attachments/assets/5c952438-d8d3-4a14-9cd4-5d03accfae04" width="200" />
+<img src="https://github.com/user-attachments/assets/73da5811-9211-4792-92ba-dc50f8cfa7b7" width="200" />
+<img src="https://github.com/user-attachments/assets/015159df-93c4-4eb8-832b-43dda19d9a78" width="200" />
+<img src="https://github.com/user-attachments/assets/4d61558f-f676-43d0-a0ff-56e6ff95ae4c" width="200" />
+<img src="https://github.com/user-attachments/assets/7b981861-6a6a-49a1-b886-f417dd9cf6ff" width="200" />
 
 ## 📐 Architecture logicielle
 
