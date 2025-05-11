@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 object Routes {
     const val HOME = "home"
     const val EXPLORE = "explore"
+    const val COMMUNITY = "community"
     const val ANIMATE = "animate"
     const val LOGIN = "login"
     const val PROFILE = "profile"

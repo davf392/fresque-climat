@@ -4,35 +4,35 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.davidfz.animfresque.home.HomeScreen
 import com.davidfz.animfresque.ui.explore.screens.ExploreScreen
 import com.davidfz.animfresque.ui.animate.screens.AnimateScreen
 import com.davidfz.animfresque.ui.animate.viewmodel.AnimateViewModel
-import com.davidfz.animfresque.ui.community.CommunityScreen
+import com.davidfz.animfresque.ui.community.screens.CommunityScreen
 import com.davidfz.animfresque.ui.navigation.BottomNavItem
 import com.davidfz.animfresque.ui.navigation.Routes
 import com.davidfz.animfresque.ui.navigation.rememberFreskNavController
@@ -62,29 +62,27 @@ fun FreskApp(
 fun DefaultPreview() { FreskTheme { FreskApp(Modifier.background(Color.White)) } }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
     val navController = rememberFreskNavController()
     val navBackStackEntry by navController.navController.currentBackStackEntryAsState(    )
-    val currentRoute = navBackStackEntry?.destination?.route
     val animateViewModel: AnimateViewModel = viewModel()
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Fresque du Climat",) },
-                navigationIcon = {
-                    if (currentRoute == Routes.EDIT_PROFILE) {
-                        IconButton(onClick = { navController.navController.popBackStack() }) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "Localized description"
-                            )
-                        }
-                    }
-                },
-            )
+//            TopAppBar(
+//                title = { Text("Fresque du Climat") },
+//                navigationIcon = {
+//                    if (currentRoute == Routes.EDIT_PROFILE) {
+//                        IconButton(onClick = { navController.navController.popBackStack() }) {
+//                            Icon(
+//                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+//                                contentDescription = "Localized description"
+//                            )
+//                        }
+//                    }
+//                },
+//            )
         },
         bottomBar = { BottomNavigationBar(navController.navController) }
     ) { innerPadding ->
@@ -93,7 +91,8 @@ fun MainScreen() {
             startDestination = Routes.HOME,
             Modifier.padding(innerPadding)
         ) {
-            composable(Routes.HOME) { CommunityScreen() }
+            composable(Routes.HOME) { HomeScreen() }
+            composable(Routes.COMMUNITY) { CommunityScreen() }
             composable(Routes.EXPLORE) { ExploreScreen() }
             composable(Routes.ANIMATE) {
                 AnimateScreen(
@@ -123,6 +122,7 @@ fun MainScreen() {
 fun BottomNavigationBar(navController: NavController) {
     val navItems = listOf(
         BottomNavItem("Home", Routes.HOME, Icons.Default.Home),
+        BottomNavItem("Community", Routes.COMMUNITY, Icons.Default.People),
         BottomNavItem("Explore", Routes.EXPLORE, Icons.Default.Search),
         BottomNavItem("Animate", Routes.ANIMATE, Icons.Default.Face),
         BottomNavItem("Profile", Routes.LOGIN, Icons.Default.AccountCircle)
@@ -143,7 +143,9 @@ fun BottomNavigationBar(navController: NavController) {
                             FresqueClimatColors.Secondary
                     )
                 },
-                label = { Text(item.name) },
+                label = {
+                    Text(text = item.name, fontSize = 10.sp)
+                },
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
