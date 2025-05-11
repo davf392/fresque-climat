@@ -1,4 +1,4 @@
-package com.davidfz.animfresque.home.components
+package com.davidfz.animfresque.ui.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

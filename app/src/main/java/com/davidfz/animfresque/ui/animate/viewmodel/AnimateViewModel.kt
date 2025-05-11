@@ -165,7 +165,7 @@ open class AnimateViewModel: ViewModel() {
 
     private fun initPhasesList(): List<AnimationPhaseUiState> {
         return mutableStateListOf(
-            AnimationPhaseUiState("Intro", CountDownTimer(5)),
+            AnimationPhaseUiState("Intro", CountDownTimer(10 * 60)),
             AnimationPhaseUiState("Lot 1", CountDownTimer(10 * 60)),
             AnimationPhaseUiState("Lot 2", CountDownTimer(15 * 60)),
             AnimationPhaseUiState("Lot 3", CountDownTimer(20 * 60)),
