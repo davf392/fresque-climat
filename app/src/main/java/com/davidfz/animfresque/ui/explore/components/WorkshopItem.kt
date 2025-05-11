@@ -9,9 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.PinDrop
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -46,11 +47,11 @@ fun WorkshopItem(
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.Search, contentDescription = "Date/Time", modifier = Modifier.padding(end = 8.dp).size(16.dp))
+                    Icon(Icons.Filled.CalendarMonth, contentDescription = "Date/Time", modifier = Modifier.padding(end = 8.dp).size(16.dp))
                     Text(text = workshop.date)
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.Map, contentDescription = "Location", modifier = Modifier.padding(end = 8.dp).size(16.dp))
+                    Icon(Icons.Filled.PinDrop, contentDescription = "Location", modifier = Modifier.padding(end = 8.dp).size(16.dp))
                     Text(text = "${workshop.city}, ${workshop.country}")
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -58,7 +59,7 @@ fun WorkshopItem(
                     Text(text = stringResource(R.string.session_nb_slots_participants, workshop.availableSlotsPublic))
                 }
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.Person, contentDescription = "Animators", modifier = Modifier.padding(end = 8.dp).size(16.dp))
+                    Icon(Icons.Filled.AccountBox, contentDescription = "Animators", modifier = Modifier.padding(end = 8.dp).size(16.dp))
                     Text(text = stringResource(R.string.session_nb_slots_facilitators, workshop.availableSlotsFacilitators))
                 }
             }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AnimFresque</string>
+    <string name="app_name">Fresque Climat</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string name="session_nb_slots_participants">%d available slots (participants)</string>

@@ -24,14 +24,6 @@ import com.davidfz.animfresque.ui.profile.components.ProfileInfo
 import com.davidfz.animfresque.ui.profile.components.ProfileStatItem
 
 
-data class ProfileMenuItem(
-    val title: String,
-    val icon: Int
-)
-
-val profileMenuItems = listOf(
-    ProfileMenuItem("Mes formations suivies", R.drawable.ic_launcher_background),
-)
 val profileStats = listOf(
     ProfileStat("Ateliers animés", 0, Icons.Default.Accessibility),
     ProfileStat("Formations animées", 0, Icons.Default.Accessibility),
