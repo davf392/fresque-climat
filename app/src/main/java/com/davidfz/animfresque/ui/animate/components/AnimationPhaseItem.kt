@@ -63,7 +63,6 @@ fun AnimationPhaseItem(
     )
     val modifierTextTimer = if (!isTimerRunning && isActive) Modifier.alpha(alpha) else Modifier
 
-
     Card(
         modifier = Modifier.padding(8.dp).height(55.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),

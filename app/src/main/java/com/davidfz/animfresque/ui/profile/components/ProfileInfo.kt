@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.davidfz.animfresque.ui.profile.AnimatorProfile
+import com.davidfz.animfresque.ui.theme.FresqueClimatColors
 
 @Composable
 fun ProfileInfo(
@@ -33,7 +35,8 @@ fun ProfileInfo(
     onClickEditProfile: () -> Unit = {}
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().padding(8.dp)
+        modifier = modifier.fillMaxWidth().padding(8.dp),
+        colors = CardDefaults.cardColors(Color.Transparent)
     ) {
         Column(
             modifier = Modifier.padding(8.dp)

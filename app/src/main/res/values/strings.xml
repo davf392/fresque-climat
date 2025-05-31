@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Fresque Climat</string>
     <string name="title_activity_main">MainActivity</string>
-
-    <string name="session_nb_slots_participants">%d places·s restante·s</string>
-    <string name="session_nb_slots_facilitators">%d anima·teur·trice·s restant·e·s</string>
+    <plurals name="session_nb_slots_participants">
+        <item quantity="one">%d place restante</item>
+        <item quantity="other">%d places restantes</item>
+    </plurals>
+    <string name="session_available_roles">Rôles disponibles : </string>
     <string name="start_animation">Démarrer l\'animation</string>
     <string name="stop_animation">Arrêter l\'animation</string>
     <string name="play_animation">Lecture</string>
@@ -19,4 +21,10 @@
     <string name="timer_seconds">Secondes</string>
     <string name="button_ok">OK</string>
     <string name="button_cancel">Annuler</string>
+    <string name="enter_password">Votre mot de passe</string>
+    <string name="button_login">me connecter</string>
+    <string name="enter_email">Votre e-mail</string>
+    <string name="activate_account">activer mon compte</string>
+    <string name="account_already_activated">Déjà activé ?\nVous pouvez vous connecter</string>
+    <string name="profile_logout">Me déconnecter</string>
 </resources>

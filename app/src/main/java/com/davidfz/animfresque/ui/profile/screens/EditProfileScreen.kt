@@ -45,7 +45,7 @@ fun EditProfileScreen(
     var text by rememberSaveable { mutableStateOf("Text") }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
             .fillMaxSize()
     ) {
@@ -64,7 +64,7 @@ fun EditProfileScreen(
             modifier = Modifier.padding(top = 8.dp)
         ) {
             OutlinedTextField(
-                value = "David",
+                value = "John",
                 singleLine = true,
                 onValueChange = { text = it },
                 label = { Text("Prénom") },
@@ -73,7 +73,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = "Fz",
+                value = "Doe",
                 singleLine = true,
                 onValueChange = { text = it },
                 label = { Text("Nom de famille") },
@@ -82,7 +82,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = "davidf@gmail.com",
+                value = "johndoe@gmail.com",
                 singleLine = true,
                 onValueChange = { text = it },
                 label = { Text("E-Mail") },
@@ -91,7 +91,7 @@ fun EditProfileScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = "Lyon",
+                value = "Paris",
                 singleLine = true,
                 onValueChange = { text = it },
                 label = { Text("Ville") },

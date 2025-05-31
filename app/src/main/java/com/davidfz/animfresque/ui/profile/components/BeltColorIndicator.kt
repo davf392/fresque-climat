@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BeltColorIndicator(beltColor: Color, beltName: String) {
-    val lighterBeltColor = beltColor.copy(alpha = 0.5f)
+    val lighterBeltColor = beltColor.copy(alpha = 0.7f)
 
     Box(
         modifier = Modifier
