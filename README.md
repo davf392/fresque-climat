@@ -83,5 +83,5 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants :
 
 ### Voulez-vous contribuer au code ?
 1. [Fork Fresque Climat ](https://github.com/davf392/fresque-climat/)
-2. Créer une nouvelle branche ([avec GitHub](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)) ou avec la commande `git checkout -b branch-name develop`)
+2. Créer une nouvelle branche ([avec GitHub](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)) ou avec la commande `git checkout -b branch-name develop`
 3. [Créer une Pull Request](https://github.com/davf392/fresque-climat/compare)
